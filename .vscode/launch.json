@@ -9,11 +9,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-<<<<<<< HEAD
-            "url": "http://localhost:8080",
-=======
             "url": "http://localhost:8080/CRUD-PHP-DATABASE-PRODOTTI",
->>>>>>> 37283d04ab1e405fdacf1ec85706b165d139aac9
             "webRoot": "${workspaceFolder}"
         }
     ]
