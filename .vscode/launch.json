@@ -7,23 +7,9 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome",
-            "url": "http://localhost:8080/crud",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080/CRUD-PHP-DATABASE-PRODOTTI",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Listen for XDebug",
-            "type": "php",
-            "request": "launch",
-            "port": 9000
-        },
-        {
-            "name": "Launch currently open script",
-            "type": "php",
-            "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "port": 9000
         }
     ]
 }
