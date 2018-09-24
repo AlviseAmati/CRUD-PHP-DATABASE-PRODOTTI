@@ -33,10 +33,11 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
-                <div class="form-group has-feedback">
-                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'>
-                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
-                </div>
+            <div class="form-group has-feedback">
+                    <div class="search-control">
+                    <input type="search" id="research"  onkeyup='Ricerca("Utenti");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Utenti");' >Search</button>
+            </div>
             </ul>
             </div>
         </div>
@@ -52,8 +53,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
         </form> 
         </div> <br>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungiUtente('Utenti');"><span class="glyphicon glyphicon-plus"></span></button>
-        <button type='submit' class='btn btn-danger' name='btnDelete' onclick='cancella("Utenti");'><span class='glyphicon glyphicon-minus'></span></button>
-        <button type='submit' class='btn btn-primary' name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdUtente, 'Utenti');"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button type='submit' class='btn btn-danger' id="Cancella" disabled="true" name='btnDelete' onclick='cancella("Utenti");'><span class='glyphicon glyphicon-minus'></span></button>
+        <button type='submit' class='btn btn-primary' id="Modifica" disabled="true" name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdUtente, 'Utenti');"><span class='glyphicon glyphicon-pencil'></span></button>
     <?php } ?>
         <!-- form modale per Aggiungi-->
         <div class="modal fade" id="myModal" role="dialog">
@@ -80,7 +81,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <input type="text" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
                         <label for="DataNascita">Data Nascita:</label>
                         <input type="text" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>   
-                        <label for="Eta">Eta:</label>
+                        <label for="Eta">Età:</label>
                         <input type="text" class="form-control" name="Eta" id="Eta" placeholder="Eta" required>          
                         <label for="Indirizzo">Indirizzo:</label>
                         <input type="text" class="form-control" name="Indirizzo" id="Indirizzo" placeholder="Indirizzo" required>             

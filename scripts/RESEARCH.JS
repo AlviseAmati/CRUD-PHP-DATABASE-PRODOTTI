@@ -1,4 +1,4 @@
-function Ricerca()
+function Ricerca(tabella)
 {
     //colora le celle dove trova la stringa passata
     Reset();
@@ -12,6 +12,14 @@ function Ricerca()
             }
         }
     }
+    else 
+        $("#id_table").load("Select.php?tabella=" + tabella);
+}
+
+function RicercaFiltro(tabella)
+{
+    var stringa = document.getElementById("research").value.toUpperCase();
+    $("#id_table").load("Select.php?tabella=" + tabella + "&Ricerca=" + 1 + "&Valore=" + stringa);
 }
 
 function Reset() {

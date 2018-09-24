@@ -34,9 +34,10 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <div class="container">
             <ul class="nav navbar-form navbar-right">
                 <div class="form-group has-feedback">
-                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'>
-
-                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    <div class="search-control">
+                    <input type="search" id="research"  onkeyup='Ricerca("Ruoli");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Ruoli");' >Search</button>
+                </div>
                 </div>
             </ul>
             </div>
@@ -55,7 +56,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     <div class="modal-body">
                         <input type="hidden" class="form-control"  name="IdRuoli" id="IdRuoli" placeholder="IdRuoli" required>
                         <br>
-                        <label for="DescrizioneRuolo">DescrizioneRuolo:</label>
+                        <label for="DescrizioneRuolo">Descrizione Ruolo:</label>
                         <input type="text" class="form-control" name="DescrizioneRuolo" id="DescrizioneRuolo" placeholder="DescrizioneRuolo" required>
                         <br>                             
                     </div>

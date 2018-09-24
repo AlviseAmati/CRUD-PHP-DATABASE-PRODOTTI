@@ -34,9 +34,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <div class="container">
             <ul class="nav navbar-form navbar-right">
                 <div class="form-group has-feedback">
-                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'>
-
-                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    <input type="search" id="research"  onkeyup='Ricerca("Magazzini");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Magazzini");' >Search</button>
                 </div>
             </ul>
             </div>
@@ -45,8 +44,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
     <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>    <div class="container" style="align-right" id="mostra">                      
     <?php if($ruolo == 'Amministratore'){?>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungiMagazzino('Magazzini');"><span class="glyphicon glyphicon-plus"></span></button>
-        <button type='submit' class='btn btn-danger' name='btnDelete' onclick='cancella("Magazzini");'><span class='glyphicon glyphicon-minus'></span></button>
-        <button type='submit' class='btn btn-primary' name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Magazzini');"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button type='submit' class='btn btn-danger' id="Cancella" disabled="true" name='btnDelete' onclick='cancella("Magazzini");'><span class='glyphicon glyphicon-minus'></span></button>
+        <button type='submit' class='btn btn-primary' id="Modifica" disabled="true" name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Magazzini');"><span class='glyphicon glyphicon-pencil'></span></button>
     <?php } ?>
         <!-- form modale per Aggiungi-->
         <div class="modal fade" id="myModal" role="dialog">
@@ -60,7 +59,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     <div class="modal-body">
                         <input type="hidden" class="form-control"  name="IdMagazzino" id="IdMagazzino" placeholder="IdMagazzino" required>
                         <br>
-                        <label for="DescrizioneMagazzino">DescrizioneMagazzino:</label>
+                        <label for="DescrizioneMagazzino">Descrizione Magazzino:</label>
                         <input type="text" class="form-control" name="DescrizioneMagazzino" id="DescrizioneMagazzino" placeholder="Descrizione" required>
                         <br>
                         <label for="Ubicazione">Ubicazione:</label>

@@ -46,7 +46,6 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
 
         $stmt->execute(); 
         $DescrizioneOperazione = $DescrizioneOperazione . ' nella tabella Utenti ';
-        
     }
 
     if(isset($_GET['DescrizioneMagazzino'])&&isSet($_GET['Ubicazione']))
@@ -71,7 +70,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $Descrizione = htmlentities($_GET['Descrizione']);
         $Prezzo = htmlentities($_GET['Prezzo']);
         $QuantitaDisponibile = htmlentities($_GET['QuantitaDisponibile']);
-        $IdMagazzino = htmlentities( $_GET['IdMagazzino']);
+        $IdMagazzino = htmlentities($_GET['IdMagazzino']);
 
         $sql = "UPDATE prodotti SET Descrizione = :descrizione, Prezzo = :prezzo,  QuantitaDisponibile = :quantitadisponibile, IdMagazzino = :idmagazzino WHERE IdProdotti=:idprodotti";
 
