@@ -21,7 +21,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
     {
         $NomeUtente = htmlentities($_GET['NomeUtente']);
         $str=htmlentities($_GET['Passwords']);
-        $Passwords = md5($str, TRUE);
+        $Passwords = md5($str);
         $Nome = htmlentities($_GET['Nome']);
         $Cognome = htmlentities($_GET['Cognome']);
         $Mail = htmlentities($_GET['Mail']);

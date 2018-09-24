@@ -6,7 +6,7 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
     {
         include("config.php");
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         
         $sql = "SELECT IdUtente, NomeUtente, IdRuoli, Passwords, Abilitazione FROM utenti";
         $stmt1 = $db->prepare($sql);
@@ -19,9 +19,13 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
             $PasswordDB = $row1['Passwords'];
             $IdRuoli = $row1['IdRuoli']; 
             $Abilitazione=$row1['Abilitazione'];
-
-            if($username == $NomeUtente && $password == $PasswordDB && $Abilitazione == 1)
+            if($username == $NomeUtente && $password == $PasswordDB)
             {
+                if($Abilitazione == 0)
+                {
+                    header('location:Login.php?errore=2');       
+                    break;           
+                }
                 $verifica = 1;
                 $sql = "SELECT DescrizioneRuolo  FROM ruoli WHERE IdRuoli = :idruoli";   
                 $stmt = $db->prepare($sql);
@@ -60,19 +64,14 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
                 header('location:Admin.php');
             } 
         
-         if($Abilitazione == 0)
-            {
-                header('location:Login.php?errore=2');
-     
-               
-            }
-         if($verifica == 0)
-            { 
-                header('location:Login.php?errore=1');    
-            }
+ 
+ 
 
         }
-        
+        if($verifica == 0 && $Abilitazione != 0)
+        { 
+            header('location:Login.php?errore=1');    
+        }
 
     }
     else 
