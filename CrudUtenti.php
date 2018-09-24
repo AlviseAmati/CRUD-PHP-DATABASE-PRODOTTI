@@ -80,13 +80,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <label for="Mail">Mail:</label>
                         <input type="mail" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
                         <label for="DataNascita">Data Nascita:</label>
-<<<<<<< HEAD
-                        <input type="date" min="01/01/1900" max="01/01/2018" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>   
-                        <label for="Eta">Eta:</label>
-                        <input type="text" class="form-control" name="Eta" id="Eta" placeholder="Eta" disabled>          
-=======
-                        <input type="date" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>            
->>>>>>> 37283d04ab1e405fdacf1ec85706b165d139aac9
+                        <input type="date" min="01/01/1900" max="01/01/2018" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>           
                         <label for="Indirizzo">Indirizzo:</label>
                         <input type="text" class="form-control" name="Indirizzo" id="Indirizzo" placeholder="Indirizzo" required>             
                         <label for="CodiceFiscale">Codice Fiscale:</label>

@@ -94,13 +94,10 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     $Indirizzo = $row['Indirizzo'];
                     $CodiceFiscale = $row['CodiceFiscale'];
                     $IdRuoli = $row['DescrizioneRuolo'];
-<<<<<<< HEAD
                     $Abilitazione=$row['Abilitazione'];
                     $Data=$row['DataReg'];
                     $DataReg=substr($Data,0,4) . "/" . substr($Data,4,2) . "/" . substr($Data,6,2);
-=======
                     $Data=substr($DataNascita,0,4) . "/" . substr($DataNascita,4,2) . "/" .  substr($DataNascita,6,2);
->>>>>>> 37283d04ab1e405fdacf1ec85706b165d139aac9
                     echo "<tr>"; 
                     echo "<td>" . $IdUtente . "</td>";
                     echo "<td onclick='sorting(1);'>" . $NomeUtente . "</td>";
