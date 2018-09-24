@@ -14,7 +14,11 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $DescrizioneOperazione = $row['DescrizioneOperazione'];
     }    
 
+<<<<<<< HEAD
     if(isSet($_GET['NomeUtente']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Eta']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli']) && isSet($_GET['Abilitazione']) )
+=======
+    if(isSet($_GET['NomeUtente']) && isSet($_GET['Passwords']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli']) )
+>>>>>>> 37283d04ab1e405fdacf1ec85706b165d139aac9
     {
         $IdUtente = htmlentities($_GET['Id']);
 
@@ -23,7 +27,6 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $Cognome = htmlentities($_GET['Cognome']);
         $Mail = htmlentities($_GET['Mail']);
         $DataNascita = htmlentities($_GET['DataNascita']);
-        $Eta = htmlentities($_GET['Eta']);
         $Indirizzo = htmlentities($_GET['Indirizzo']);
         $CodiceFiscale = htmlentities($_GET['CodiceFiscale']);
         $IdRuoli = htmlentities($_GET['IdRuoli']);
