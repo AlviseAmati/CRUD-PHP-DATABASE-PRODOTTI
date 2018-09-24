@@ -23,14 +23,14 @@ function updateMagazzino(IdMagazzino, tabella, DescrizioneMagazzino, Ubicazione)
         });   
 }
 
-function updateUtenti(IdUtenti,tabella,NomeUtente, Passwords,Nome,Cognome,Mail,DataNascita,Indirizzo,CodiceFiscale,IdRuoli)
+function updateUtenti(IdUtenti,tabella,NomeUtente, Passwords,Nome,Cognome,Mail,DataNascita,Indirizzo,CodiceFiscale,IdRuoli,Abilitato)
 {
     DataNascita = DataNascita.split('-')[0] + DataNascita.split('-')[1] + DataNascita.split('-')[2];
     regular = new RegExp("^([a-zA-Z]*)$");
     if(regular.test(Nome) && regular.test(Cognome)){
         regular = new RegExp("^([a-zA-Z0-9]*)$");
         if(regular.test(Indirizzo)){
-        $("#prova").load("Updated.php?Id=" + IdUtenti + "&NomeUtente=" + NomeUtente + "&Passwords=" + Passwords+ "&Nome=" + Nome+ "&Cognome=" + Cognome + "&Mail=" + Mail+ "&DataNascita=" + DataNascita + "&Indirizzo=" + Indirizzo+ "&CodiceFiscale=" + CodiceFiscale+ "&IdRuoli=" + IdRuoli, function () {
+        $("#prova").load("Updated.php?Id=" + IdUtenti + "&NomeUtente=" + NomeUtente + "&Passwords=" + Passwords+ "&Nome=" + Nome+ "&Cognome=" + Cognome + "&Mail=" + Mail+ "&DataNascita=" + DataNascita + "&Indirizzo=" + Indirizzo+ "&CodiceFiscale=" + CodiceFiscale+ "&IdRuoli=" + IdRuoli + "&Abilitazione=" + Abilitato, function () {
             $("#error").hide();
             $("#id_table").load("Select.php?tabella=" + tabella);
         }); 
@@ -85,7 +85,7 @@ function aggiungiMagazzino(DescrizioneMagazzino, Ubicazione){
     });
 }
 
-function aggiungiUtente(NomeUtente, Passwords,Nome,Cognome,Mail,DataNascita,Indirizzo,CodiceFiscale,IdRuoli){ 
+function aggiungiUtente(NomeUtente, Passwords,Nome,Cognome,Mail,DataNascita,Indirizzo,CodiceFiscale,IdRuoli,Abilitato){ 
     
     DataNascita = DataNascita.split('-')[0] + DataNascita.split('-')[1] + DataNascita.split('-')[2];
     bool=1;
@@ -102,7 +102,7 @@ function aggiungiUtente(NomeUtente, Passwords,Nome,Cognome,Mail,DataNascita,Indi
         if(regular.test(Nome) && regular.test(Cognome)){
             regular = new RegExp("^([a-zA-Z0-9]*)$");
             if(regular.test(Indirizzo)){
-                $("#prova").load("AddRecord.php?NomeUtente=" + NomeUtente + "&Passwords=" + Passwords + "&Nome=" + Nome + "&Cognome=" + Cognome + "&Mail=" + Mail + "&DataNascita=" + DataNascita + "&Indirizzo=" + Indirizzo + "&CodiceFiscale=" + CodiceFiscale + "&IdRuoli=" + IdRuoli, function () {
+                $("#prova").load("AddRecord.php?NomeUtente=" + NomeUtente + "&Passwords=" + Passwords + "&Nome=" + Nome + "&Cognome=" + Cognome + "&Mail=" + Mail + "&DataNascita=" + DataNascita + "&Indirizzo=" + Indirizzo + "&CodiceFiscale=" + CodiceFiscale + "&IdRuoli=" + IdRuoli + "&Abilitazione=" + Abilitato, function () {
                     selection('Utenti');
                     $("#error").hide(); 
                 });
@@ -172,6 +172,7 @@ function formAggiorna(IdMagazzino,tabella)
         Indirizzo=children.eq(8).html();
         CodiceFiscale=children.eq(9).html();
         IdRuoli=children.eq(10).html();
+        Abilitazione=children.eq(11).html();
         $("#insert").unbind();
         $("#titolo").text("Modifica Prodotto");
         $("#NomeUtente").val(NomeUtente);
@@ -183,8 +184,9 @@ function formAggiorna(IdMagazzino,tabella)
         $("#Indirizzo").val(Indirizzo);
         $("#CodiceFiscale").val(CodiceFiscale);
         $("#IdRuoli").val(IdRuoli);
+        $("#Abilitazione").val(Abilitazione);
         $("#insert").click(function(){
-            updateUtenti(Id,tabella, $('#NomeUtente').val(), $('#Passwords').val(), $('#Nome').val(), $('#Cognome').val(), $('#Mail').val(), $('#DataNascita').val(), $('#Indirizzo').val(), $('#CodiceFiscale').val(), $('#IdRuoli').val());
+            updateUtenti(Id,tabella, $('#NomeUtente').val(), $('#Passwords').val(), $('#Nome').val(), $('#Cognome').val(), $('#Mail').val(), $('#DataNascita').val(), $('#Indirizzo').val(), $('#CodiceFiscale').val(), $('#IdRuoli').val(),$('#Abilitazione').val());
         });
     }
 }
@@ -221,11 +223,12 @@ function formAggiungiUtente (){
     $("#Indirizzo").val("");
     $("#CodiceFiscale").val("");
     $("#IdRuoli").val("");
+    $("#Abilitazione").val("");
     $("#titolo").text("Aggiungi un Utente");
 
   
     $("#insert").click(function(){
-        aggiungiUtente($('#NomeUtente').val(),$('#Passwords').val(),$('#Nome').val(),$('#Cognome').val(),$('#Mail').val(),$('#DataNascita').val(),$('#Indirizzo').val(),$('#CodiceFiscale').val(),$('#IdRuoli').val());
+        aggiungiUtente($('#NomeUtente').val(),$('#Passwords').val(),$('#Nome').val(),$('#Cognome').val(),$('#Mail').val(),$('#DataNascita').val(),$('#Indirizzo').val(),$('#CodiceFiscale').val(),$('#IdRuoli').val(),$('#Abilitazione').val());
     });
 }
 

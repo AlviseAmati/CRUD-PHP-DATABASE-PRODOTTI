@@ -30,11 +30,10 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
         $CodiceFiscale = htmlentities($_GET['CodiceFiscale']);
         $IdRuoli = htmlentities($_GET['IdRuoli']);
         $Abilitazione = htmlentities($_GET['Abilitazione']);
-        $DataReg = date("Y/m/d");
-        $DataReg= $DataReg.split('/')[0]+$DataReg.split('/')[1]+$DataReg.split('/')[2]
+        $DataReg = date("Ymd");
 
 
-        $sql = "INSERT INTO utenti (NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta Indirizzo, CodiceFiscale, IdRuoli, Abilitazione,DataReg) VALUES(:NomeUtente,:Passwords,:Nome,:Cognome,:Mail,:DataNascita,:Eta,:Indirizzo,:CodiceFiscale,:IdRuoli,:Abilitazione,:DataReg)";
+        $sql = "INSERT INTO utenti (NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, IdRuoli, Abilitazione,DataReg) VALUES(:NomeUtente,:Passwords,:Nome,:Cognome,:Mail,:DataNascita,:Eta,:Indirizzo,:CodiceFiscale,:IdRuoli,:Abilitazione,:DataReg)";
         $Eta= date("Y") - substr($DataNascita,0,4);
         if(date("m")<substr($DataNascita,4,2)) $Eta=$Eta-1;    
         else if(date("m")==substr($DataNascita,4,2) && date("d")<substr($DataNascita,6,2)) $Eta=$Eta-1;

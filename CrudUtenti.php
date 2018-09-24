@@ -88,7 +88,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                                  name="CodiceFiscale" id="CodiceFiscale" placeholder="Codice Fiscale" required>             
                         <label for="IdRuoli">Ruoli:</label>
                         <select class="form-control" id = 'IdRuoli'> <option value='1'> Ospite </option> <option value='2'> Amministratore </option> </select> 
-                        <label for="Abilitazione">Ruoli:</label>
+                        <label for="Abilitazione">Abilitazione:</label>
                         <select class="form-control" id = 'Abilitazione'> <option value='0'> Disabilitato </option> <option value='1'> Abilitato </option> </select>                              
                     </form>
                     </div>
