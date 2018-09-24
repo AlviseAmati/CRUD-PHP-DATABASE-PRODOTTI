@@ -62,17 +62,13 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
         
          if($Abilitazione == 0)
             {
-                echo "<script language='JavaScript'>\n";  
-                echo "window.location.href = 'Login.php?errore=2';";
-                echo "</script>";        
+                header('location:Login.php?errore=2');
+     
                
             }
          if($verifica == 0)
             { 
-                echo "<script language='JavaScript'>\n";  
-                echo "window.location.href = 'Login.php?errore=1';";
-                echo "</script>";        
-                  
+                header('location:Login.php?errore=1');    
             }
 
         }

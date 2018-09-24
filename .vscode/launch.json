@@ -12,5 +12,6 @@
             "url": "http://localhost:8080/CRUD-PHP-DATABASE-PRODOTTI",
             "webRoot": "${workspaceFolder}"
         }
+        
     ]
 }
