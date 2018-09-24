@@ -1,7 +1,8 @@
 <?php 
 session_start();
 if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
-{ ?>
+{
+     ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
         <table class="table table-hover" id="id_table">
         </table>
     </div>
-    <p id="prova" class="hidden"></p>
+    <p id="prova" class="hidden">
+    </p>
 </body>
 </html>
 <?php 
