@@ -94,6 +94,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     $Indirizzo = $row['Indirizzo'];
                     $CodiceFiscale = $row['CodiceFiscale'];
                     $IdRuoli = $row['DescrizioneRuolo'];
+                    $Data=substr($DataNascita,0,4) . "/" . substr($DataNascita,4,2) . "/" .  substr($DataNascita,6,2);
                     echo "<tr>"; 
                     echo "<td>" . $IdUtente . "</td>";
                     echo "<td onclick='sorting(1);'>" . $NomeUtente . "</td>";
@@ -101,7 +102,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     echo "<td onclick='sorting(3);'>" . $Nome . "</td>";
                     echo "<td onclick='sorting(4);'>" . $Cognome . "</td>";
                     echo "<td onclick='sorting(5);'>" . $Mail . "</td>";
-                    echo "<td onclick='sorting(6);'>" . $DataNascita . "</td>";
+                    echo "<td onclick='sorting(6);'>" . $Data . "</td>";
                     echo "<td onclick='sorting(7);'>" . $Eta . "</td>";
                     echo "<td onclick='sorting(8);'>" . $Indirizzo . "</td>";
                     echo "<td onclick='sorting(9);'>" . $CodiceFiscale . "</td>";
