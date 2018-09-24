@@ -65,27 +65,32 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <p id="titolo"></p>
                     </div>
                     <div class="modal-body">
+                    <form>
                         <input type="hidden" class="form-control"  name="IdUtente" id="IdUtente" required>
                         <br>
                         <label for="NomeUtente">Nome Utente:</label>
                         <input type="text" class="form-control" name="NomeUtente" id="NomeUtente" placeholder="Nome Utente" required>
                         <br>
                         <label for="Password">Password:</label>
-                        <input type="text" class="form-control" name="Passwords" id="Passwords" placeholder="Passwords" required>     
+                        <input type="password" class="form-control" name="Passwords" id="Passwords" placeholder="Passwords" required>     
                         <label for="Nome">Nome:</label>
                         <input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome" required>   
                         <label for="Cognome">Cognome:</label>
                         <input type="text" class="form-control" name="Cognome" id="Cognome" placeholder="Cognome" required>   
                         <label for="Mail">Mail:</label>
-                        <input type="text" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
+                        <input type="mail" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
                         <label for="DataNascita">Data Nascita:</label>
-                        <input type="date" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>            
+                        <input type="date" min="01/01/1900" max="01/01/2018" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>           
                         <label for="Indirizzo">Indirizzo:</label>
                         <input type="text" class="form-control" name="Indirizzo" id="Indirizzo" placeholder="Indirizzo" required>             
                         <label for="CodiceFiscale">Codice Fiscale:</label>
-                        <input type="text" class="form-control" name="CodiceFiscale" id="CodiceFiscale" placeholder="Codice Fiscale" required>             
+                        <input type="text" class="form-control" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+                                 name="CodiceFiscale" id="CodiceFiscale" placeholder="Codice Fiscale" required>             
                         <label for="IdRuoli">Ruoli:</label>
-                        <select class="form-control" id = 'IdRuoli'> <option value='1'> Ospite </option> <option value='2'> Amministratore </option> </select>                               
+                        <select class="form-control" id = 'IdRuoli'> <option value='1'> Ospite </option> <option value='2'> Amministratore </option> </select> 
+                        <label for="Abilitazione">Ruoli:</label>
+                        <select class="form-control" id = 'Abilitazione'> <option value='0'> Disabilitato </option> <option value='1'> Abilitato </option> </select>                              
+                    </form>
                     </div>
                     <div class="modal-footer">
                         <br>

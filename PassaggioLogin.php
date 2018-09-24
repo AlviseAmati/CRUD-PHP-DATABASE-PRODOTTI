@@ -8,7 +8,7 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
         $username = $_POST['username'];
         $password = $_POST['password'];
         
-        $sql = "SELECT IdUtente, NomeUtente, IdRuoli, Passwords FROM utenti";
+        $sql = "SELECT IdUtente, NomeUtente, IdRuoli, Passwords, Abilitazione FROM utenti";
         $stmt1 = $db->prepare($sql);
         $stmt1-> execute();
         $verifica = 0;
@@ -18,7 +18,9 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
             $NomeUtente = $row1['NomeUtente'];
             $PasswordDB = $row1['Passwords'];
             $IdRuoli = $row1['IdRuoli']; 
-            if($username == $NomeUtente && $password == $PasswordDB)
+            $Abilitazione=$row1['Abilitazione'];
+
+            if($username == $NomeUtente && $password == $PasswordDB && $Abilitazione == 1)
             {
                 $verifica = 1;
                 $sql = "SELECT DescrizioneRuolo  FROM ruoli WHERE IdRuoli = :idruoli";   
@@ -36,7 +38,7 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
                 $_SESSION['DataOra'] = $DataOra;
                 $_SESSION['Descrizione'] = 1; 
                 $_SESSION['Verifica'] = 1;
-
+        
                 $sql = "SELECT DescrizioneOperazione FROM operazionieseguite WHERE IdOperazione = 1";
                 $stmt = $db->prepare($sql);
                 $stmt->execute();
@@ -56,16 +58,26 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
                     header('location:Crud.php');
                 else
                 header('location:Admin.php');
+            } 
+        
+         if($Abilitazione == 0)
+            {
+                echo "<script language='JavaScript'>\n";  
+                echo "window.location.href = 'Login.php?errore=2';";
+                echo "</script>";        
+               
             }
+         if($verifica == 0)
+            { 
+                echo "<script language='JavaScript'>\n";  
+                echo "window.location.href = 'Login.php?errore=1';";
+                echo "</script>";        
+                  
+            }
+
         }
-        if($verifica == 0)
-        {
-            echo "<script language='JavaScript'>\n"; 
-            echo "alert('Username o Password sbagliata');\n"; 
-            echo"window.location.href = 'Login.php';";
-            echo "</script>"; 
-            include("config.php");                      
-        }
+        
+
     }
     else 
     {

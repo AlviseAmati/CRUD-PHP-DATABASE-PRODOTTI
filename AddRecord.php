@@ -17,10 +17,11 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
         $DescrizioneOperazione = $row['DescrizioneOperazione'];
     }
 
-    if(isSet($_GET['NomeUtente']) && isSet($_GET['Passwords']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli']) )
+    if(isSet($_GET['NomeUtente']) && isSet($_GET['Passwords']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli'] )&& isSet($_GET['Abilitazione']) )
     {
         $NomeUtente = htmlentities($_GET['NomeUtente']);
-        $Passwords = htmlentities($_GET['Passwords']);
+        $str=htmlentities($_GET['Passwords']);
+        $Passwords = md5($str, TRUE);
         $Nome = htmlentities($_GET['Nome']);
         $Cognome = htmlentities($_GET['Cognome']);
         $Mail = htmlentities($_GET['Mail']);
@@ -28,21 +29,28 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
         $Indirizzo = htmlentities($_GET['Indirizzo']);
         $CodiceFiscale = htmlentities($_GET['CodiceFiscale']);
         $IdRuoli = htmlentities($_GET['IdRuoli']);
+        $Abilitazione = htmlentities($_GET['Abilitazione']);
+        $DataReg = date("Y/m/d");
+        $DataReg= $DataReg.split('/')[0]+$DataReg.split('/')[1]+$DataReg.split('/')[2]
+
+
+        $sql = "INSERT INTO utenti (NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta Indirizzo, CodiceFiscale, IdRuoli, Abilitazione,DataReg) VALUES(:NomeUtente,:Passwords,:Nome,:Cognome,:Mail,:DataNascita,:Eta,:Indirizzo,:CodiceFiscale,:IdRuoli,:Abilitazione,:DataReg)";
         $Eta= date("Y") - substr($DataNascita,0,4);
         if(date("m")<substr($DataNascita,4,2)) $Eta=$Eta-1;    
         else if(date("m")==substr($DataNascita,4,2) && date("d")<substr($DataNascita,6,2)) $Eta=$Eta-1;
-        $sql = "INSERT INTO utenti (NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, IdRuoli) VALUES(:NomeUtente,:Passwords,:Nome,:Cognome,:Mail,:DataNascita,:Eta,:Indirizzo,:CodiceFiscale,:IdRuoli)";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':NomeUtente', $NomeUtente, PDO::PARAM_STR);
         $stmt->bindParam(':Passwords', $Passwords, PDO::PARAM_STR);
         $stmt->bindParam(':Nome', $Nome, PDO::PARAM_STR);
         $stmt->bindParam(':Cognome', $Cognome, PDO::PARAM_STR);
         $stmt->bindParam(':Mail', $Mail, PDO::PARAM_STR);
-        $stmt->bindParam(':DataNascita', $DataNascita, PDO::PARAM_STR);
         $stmt->bindParam(':Eta', $Eta, PDO::PARAM_STR);
+        $stmt->bindParam(':DataNascita', $DataNascita, PDO::PARAM_STR);
         $stmt->bindParam(':Indirizzo', $Indirizzo, PDO::PARAM_STR);
         $stmt->bindParam(':CodiceFiscale', $CodiceFiscale, PDO::PARAM_STR);
         $stmt->bindParam(':IdRuoli', $IdRuoli, PDO::PARAM_STR);
+        $stmt->bindParam(':Abilitazione', $Abilitazione, PDO::PARAM_STR); 
+        $stmt->bindParam(':DataReg', $DataReg, PDO::PARAM_STR); 
         $stmt->execute();
         $DescrizioneOperazione = $DescrizioneOperazione . ' nella tabella Utenti';
         $valido = 1;

@@ -14,12 +14,11 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $DescrizioneOperazione = $row['DescrizioneOperazione'];
     }    
 
-    if(isSet($_GET['NomeUtente']) && isSet($_GET['Passwords']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli']) )
+    if(isSet($_GET['NomeUtente']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli']) && isSet($_GET['Abilitazione']) )
     {
         $IdUtente = htmlentities($_GET['Id']);
 
         $NomeUtente = htmlentities($_GET['NomeUtente']);
-        $Passwords = htmlentities($_GET['Passwords']);
         $Nome = htmlentities($_GET['Nome']);
         $Cognome = htmlentities($_GET['Cognome']);
         $Mail = htmlentities($_GET['Mail']);
@@ -30,12 +29,12 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $Eta= date("Y") - substr($DataNascita,0,4);
         if(date("m")<substr($DataNascita,4,2)) $Eta=$Eta-1;    
         else if(date("m")==substr($DataNascita,4,2) && date("d")<substr($DataNascita,6,2)) $Eta=$Eta-1;
+        $Abilitazione = htmlentities($_GET['Abilitazione']);
 
-        $sql = "UPDATE utenti SET NomeUtente = :NomeUtente, Passwords = :Passwords, Nome = :Nome, Cognome = :Cognome, Mail = :Mail, DataNascita = :DataNascita, Eta = :Eta, Indirizzo = :Indirizzo, CodiceFiscale = :CodiceFiscale, IdRuoli = :IdRuoli WHERE IdUtente=:id";
+        $sql = "UPDATE utenti SET NomeUtente = :NomeUtente, Nome = :Nome, Cognome = :Cognome, Mail = :Mail, DataNascita = :DataNascita, Eta = :Eta, Indirizzo = :Indirizzo, CodiceFiscale = :CodiceFiscale, IdRuoli = :IdRuoli Abilitazione=:Abilitazione WHERE IdUtente=:id";
 
         $stmt = $db->prepare($sql);                                      
         $stmt->bindParam(':NomeUtente', $NomeUtente, PDO::PARAM_STR);  
-        $stmt->bindParam(':Passwords', $Passwords, PDO::PARAM_STR);  
         $stmt->bindParam(':Nome', $Nome, PDO::PARAM_STR);  
         $stmt->bindParam(':Cognome', $Cognome, PDO::PARAM_STR);  
         $stmt->bindParam(':Mail', $Mail, PDO::PARAM_STR);  
@@ -43,7 +42,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $stmt->bindParam(':Eta', $Eta, PDO::PARAM_STR);  
         $stmt->bindParam(':Indirizzo', $Indirizzo, PDO::PARAM_STR);  
         $stmt->bindParam(':CodiceFiscale', $CodiceFiscale, PDO::PARAM_STR);  
-        $stmt->bindParam(':IdRuoli', $IdRuoli, PDO::PARAM_STR);  
+        $stmt->bindParam(':IdRuoli', $IdRuoli, PDO::PARAM_STR); 
+        $stmt->bindParam(':Abilitazione', $Abilitazione, PDO::PARAM_STR);         
         $stmt->bindParam(':id', $IdUtente, PDO::PARAM_STR);  
 
         $stmt->execute(); 

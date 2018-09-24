@@ -1,7 +1,7 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Usare IntelliSense per informazioni sui possibili attributi.
+    // Al passaggio del mouse vengono visualizzate le descrizioni degli attributi esistenti.
+    // Per ulteriori informazioni, visitare: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
 
@@ -9,7 +9,11 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
+<<<<<<< HEAD
+            "url": "http://localhost:8080",
+=======
             "url": "http://localhost:8080/CRUD-PHP-DATABASE-PRODOTTI",
+>>>>>>> 37283d04ab1e405fdacf1ec85706b165d139aac9
             "webRoot": "${workspaceFolder}"
         }
     ]
