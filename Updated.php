@@ -27,6 +27,9 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         $Indirizzo = htmlentities($_GET['Indirizzo']);
         $CodiceFiscale = htmlentities($_GET['CodiceFiscale']);
         $IdRuoli = htmlentities($_GET['IdRuoli']);
+        $Eta= date("Y") - substr($DataNascita,0,4);
+        if(date("m")<substr($DataNascita,4,2)) $Eta=$Eta-1;    
+        else if(date("m")==substr($DataNascita,4,2) && date("d")<substr($DataNascita,6,2)) $Eta=$Eta-1;
 
         $sql = "UPDATE utenti SET NomeUtente = :NomeUtente, Passwords = :Passwords, Nome = :Nome, Cognome = :Cognome, Mail = :Mail, DataNascita = :DataNascita, Eta = :Eta, Indirizzo = :Indirizzo, CodiceFiscale = :CodiceFiscale, IdRuoli = :IdRuoli WHERE IdUtente=:id";
 
