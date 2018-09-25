@@ -1,4 +1,4 @@
-<?php  session_start(); if($_SESSION['Verifica'] == 1 && $_SESSION['Ruolo'] == 'Amministratore')
+<?php  session_start(); if(isSet($_SESSION['NomeUtente']) && isSet($_SESSION['Ruolo']))
 { ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +31,6 @@
 <?php } 
 else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    include("Logout.php");
 }?>
 </html>

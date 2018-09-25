@@ -5,9 +5,7 @@
     $pass="";
     $dbname="provamaggioli";
     $db = new PDO ("mysql:host=$hostname;dbname=$dbname", $user, $pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-    /*$db = new PDO("mysql:host=$servername;dbname = $dbname", $username,$password, array(
-        PDO::ATTR_PERSISTENT => true
-    ));*/
+    $perpage=15;
 
     }
     catch (PDOException $e) 

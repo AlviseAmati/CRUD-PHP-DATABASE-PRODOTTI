@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['Verifica']) && $_SESSION['Ruolo'] == 'Amministratore')
-{
-if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
+if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
 {
     if ($_SESSION['Ruolo'] == 'Ospite')
         $ruolo = 'Ospite';
@@ -113,8 +111,5 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
 <?php }
 else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    include("Logout.php");
 }?>

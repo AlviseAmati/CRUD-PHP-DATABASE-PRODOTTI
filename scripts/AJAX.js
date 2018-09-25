@@ -1,10 +1,11 @@
 function selection(tabella){
-    if(tabella == 'SelectLog.php')
-        $("#id_table").load("SelectLog.php");
-    else
-        $("#id_table").load("Select.php?tabella=" + tabella);
+    $("#id_table").load("Select.php?tabella=" + tabella);
     $("#id_table").hide();
     $("#id_table").fadeIn(1000);
+}
+
+function selectLog(page){
+    $("#tabella").load(page);
 }
 
 function update(IdProdotti, tabella, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino) 
@@ -56,7 +57,7 @@ function cancella(tabella){
 }
 
 function LogOut(){
-    $("#prova").load("PassaggioLogin.php?LogOut=" + 1, function () { 
+    $("#prova").load("Logout.php", function () { 
         Redirect();
     });
 }
@@ -207,4 +208,8 @@ function resetInfo(){
     //cancella il contenuto del paragrafo info sull'evento onmouseout
     $('#info').hide();
     $('#info').text('');
+}
+
+function errorLogin(){
+    $('#error').text('username o password non corretti');
 }

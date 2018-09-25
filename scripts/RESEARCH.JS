@@ -3,7 +3,7 @@ function Ricerca()
     //colora le celle dove trova la stringa passata
     Reset();
     var stringa = document.getElementById("research").value.toUpperCase();
-    if(stringa!="") {
+    if(stringa!="" && stringa!=".") {
         var table = document.getElementById("id_table");
         var celle = table.getElementsByTagName("td");
         for (var j = 0; j < celle.length; j++) {
@@ -20,5 +20,12 @@ function Reset() {
     var celle = table.getElementsByTagName("td");
     for(var j=0; j<celle.length; j++){
             celle[j].style.backgroundColor="white";
+    }
+}
+
+function Filter(){
+    var stringa = document.getElementById("research").value;
+    if(stringa!="" && stringa!=".") {
+        $("#id_table").load("Filter.php?stringa=" + stringa);
     }
 }
