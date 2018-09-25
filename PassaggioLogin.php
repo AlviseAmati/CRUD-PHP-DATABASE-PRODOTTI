@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['LogOut'])) && !isset($_POST['controllobot'])) 
+if (((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['LogOut'])) && $_POST['controllobot'] =="") 
 {
     if(!isset($_GET['LogOut']))
     {
