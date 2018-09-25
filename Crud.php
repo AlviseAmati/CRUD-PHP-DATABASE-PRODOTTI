@@ -61,8 +61,9 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo'])){
                         <br>
                         <label for="QuantitaDisponibile">Quantità:</label>
                         <input type="text" class="form-control" name="QuantitaDisponibile" id="QuantitaDisponibile" placeholder="Quantita Disponibile" required>
+                        <br>
                         <label for="IdMagazzino">Magazzino:</label>
-                        <select id="IdMagazzino">
+                        <select id="IdMagazzino" class="form-control">
                         <?php 
                             include("config.php");
                             $sql = "SELECT DescrizioneMagazzino, IdMagazzino FROM magazzino";

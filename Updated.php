@@ -72,7 +72,8 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']) && $_SESSION['Ruo
     {
         $IdProdotti = filter_var($_GET['Id'], FILTER_SANITIZE_STRING);
         $Descrizione = filter_var($_GET['Descrizione'], FILTER_SANITIZE_STRING);
-        $Prezzo = filter_var($_GET['Prezzo'], FILTER_SANITIZE_STRING);
+        $num = filter_var($_GET['Prezzo'], FILTER_SANITIZE_STRING);
+        $Prezzo = strtr($num,',','.');
         $QuantitaDisponibile = filter_var($_GET['QuantitaDisponibile'], FILTER_SANITIZE_STRING);
         $IdMagazzino = filter_var($_GET['IdMagazzino'], FILTER_SANITIZE_STRING);
 

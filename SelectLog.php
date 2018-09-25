@@ -22,9 +22,9 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']) && $_SESSION['Ruo
         <thead>
         <tr>
         <th>id</th>
-        <th onclick='sorting(1);'>IdNome</th>
-        <th onclick='sorting(2);'>DataOra</th>
-        <th onclick='sorting(3);'>DescrizioneOperazione</th>
+        <th onclick='sorting(1);'>Id Nome</th>
+        <th onclick='sorting(2);'>Data & Ora</th>
+        <th onclick='sorting(3);'>Descrizione Operazione</th>
         </tr>
         </thead>";
         while($rows = $stmt->fetchAll(PDO::FETCH_ASSOC))
