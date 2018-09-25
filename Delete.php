@@ -2,7 +2,6 @@
 session_start();
 include("Config.php");
 
-session_start();
 if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
 {
     try {
@@ -14,20 +13,18 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         $db->beginTransaction();
         $sql = "DELETE FROM " .$_GET['tabella']. " WHERE ".$campo."=:id";       
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);   
+        $stmt->bindParam(':id', $_GET['Id'], PDO::PARAM_INT);   
         $stmt->execute();     
         $db->commit();
-        $operazione="eliminato record " . $_GET['id'];
-        include("QueryLog.php");
+        $operazione="eliminato record " . $_GET['Id'];
+        $IdProdotti=$_GET['Id'];
     } 
     catch (PDOException $e) {
         $db->rollBack();
     echo $e->getMessage();  
     }
-<<<<<<< HEAD
-}
-=======
-
+    $tabella=$_GET['tabella'];
+    $NomeUtente=$_SESSION['NomeUtente'];
     $DataOra = date ("d/m/Y G:i");
     $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
     $stmt = $db->prepare($sql);
@@ -45,4 +42,3 @@ else
     header('location:Login.php');
 }
 ?>
->>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69

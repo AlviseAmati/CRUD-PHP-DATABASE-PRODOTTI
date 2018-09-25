@@ -28,16 +28,17 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo'])){
                 <div class="form-group has-feedback">
                     <div class="search-control">
                     <input type="search" id="research"  onkeyup='Ricerca("Prodotti");' name="q" placeholder="Cerca">
-                    <button id="research"  onclick='RicercaFiltro("Prodotti");' >Search</button>
+                    <button id="research"  class='btn btn-primary'  onclick='RicercaFiltro("Prodotti");' ><span class='glyphicon glyphicon-search'></span></button>
+                    <button type='submit' style="margin: 5px"  class='btn btn-primary' onclick="window.location.href='Admin.php';"><span class='glyphicon glyphicon-arrow-left'></span></button> 
+                    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>
                 </div>
                 </div>
             </ul>
             </div>
         </div>
     </nav>
-    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>
     <div class="container" style="align-right" id="mostra">                      
-    <?php if($ruolo == 'Amministratore') {?>
+    <?php if($_SESSION['Ruolo'] == 'Amministratore') {?>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungi('Prodotti');"><span class="glyphicon glyphicon-plus"></span></button>
         <button type='submit' id="Cancella" class='btn btn-danger' disabled="true" name='btnDelete' onclick='cancella("Prodotti");'><span class='glyphicon glyphicon-minus'></span></button>
         <button type='submit' id="Modifica" class='btn btn-primary' disabled="true" name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Prodotti');"><span class='glyphicon glyphicon-pencil'></span></button>        

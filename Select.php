@@ -9,7 +9,7 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
     else
         $ruolo = 'Amministratore';
 
-    $NomeUtente = $_SESSION['IdUtente'];
+    $NomeUtente = $_SESSION['NomeUtente'];
 
     $sql = "SELECT DescrizioneOperazione FROM operazionieseguite WHERE IdOperazione = 6";
     $stmt = $db->prepare($sql);
@@ -67,10 +67,10 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         if((isset($_GET['Ricerca'])) && ($_GET['Ricerca'] == 1 && isset($_GET['Valore']) && $_GET['Valore'] != ''))
         {
             $valore = $_GET['Valore'];
-            $sql = "SELECT IdUtente, NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, DescrizioneRuolo FROM utenti INNER JOIN ruoli ON utenti.IdRuoli = ruoli.IdRuoli WHERE IdUtente like '%$valore%' OR NomeUtente like '%$valore%' OR NomeUtente like '%$valore%' OR Nome like '%$valore%' OR Cognome like '%$valore%' OR Mail like '%$valore%' OR DataNascita like '%$valore%' OR Eta like '%$valore%' OR Indirizzo like '%$valore%' OR CodiceFiscale like '%$valore%' OR DescrizioneRuolo like '%$valore%'";
+            $sql = "SELECT IdUtente, NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, DescrizioneRuolo, Abilitazione, DataReg  FROM utenti INNER JOIN ruoli ON utenti.IdRuoli = ruoli.IdRuoli WHERE IdUtente like '%$valore%' OR NomeUtente like '%$valore%' OR NomeUtente like '%$valore%' OR Nome like '%$valore%' OR Cognome like '%$valore%' OR Mail like '%$valore%' OR DataNascita like '%$valore%' OR Eta like '%$valore%' OR Indirizzo like '%$valore%' OR CodiceFiscale like '%$valore%' OR DescrizioneRuolo like '%$valore%'";
         }
         else
-            $sql = "SELECT IdUtente, NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, DescrizioneRuolo FROM utenti INNER JOIN ruoli ON utenti.IdRuoli = ruoli.IdRuoli";
+            $sql = "SELECT IdUtente, NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, DescrizioneRuolo, Abilitazione, DataReg  FROM utenti INNER JOIN ruoli ON utenti.IdRuoli = ruoli.IdRuoli";
         $stmt = $db->prepare($sql);  
         $stmt->execute();   
 

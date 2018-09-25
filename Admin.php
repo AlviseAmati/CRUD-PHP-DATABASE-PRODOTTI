@@ -59,13 +59,6 @@
 <?php } 
 else
 {
-<<<<<<< HEAD
     include("Logout.php");
-=======
-    echo "<script language='JavaScript'>\n"; 
-    //echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
->>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 }?>
 </html>

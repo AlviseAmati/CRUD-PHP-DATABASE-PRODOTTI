@@ -6,7 +6,7 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         $ruolo = 'Ospite';
     else
         $ruolo = 'Amministratore';
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +34,10 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
             <div class="form-group has-feedback">
                     <div class="search-control">
                     <input type="search" id="research"  onkeyup='Ricerca("Utenti");' name="q" placeholder="Cerca">
-                    <button id="research"  onclick='RicercaFiltro("Utenti");' >Search</button>
-            </div>
-            <form action="Admin.php">       
-        
-                    <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
-                    <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut();'><span class='glyphicon glyphicon-log-out'></span></button>     
-                    </form> 
+                    <button id="research"  class='btn btn-primary'  onclick='RicercaFiltro("Utenti");' ><span class='glyphicon glyphicon-search'></span></button>
+                    <button type='submit' style="margin: 5px"  class='btn btn-primary' onclick="window.location.href='Admin.php';"><span class='glyphicon glyphicon-arrow-left'></span></button> 
+                    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>
+                </div>
             </ul>
             </div>
         </div>
@@ -118,7 +115,7 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
     <h2 align="center" style="color:red"><p id="prova" ></p>
 </body>
 </html>
-<?php }
+     <?php }
 else
 {
     include("Logout.php");

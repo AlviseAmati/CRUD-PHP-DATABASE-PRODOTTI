@@ -6,7 +6,7 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         $ruolo = 'Ospite';
     else
         $ruolo = 'Amministratore';
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,18 +31,13 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
-<<<<<<< HEAD
-                <div class="form-group has-feedback">
+            <div class="form-group has-feedback">
+                    <div class="search-control">
                     <input type="search" id="research"  onkeyup='Ricerca("Magazzini");' name="q" placeholder="Cerca">
-                    <button id="research"  onclick='RicercaFiltro("Magazzini");' >Search</button>
+                    <button id="research"  class='btn btn-primary'  onclick='RicercaFiltro("Magazzini");' ><span class='glyphicon glyphicon-search'></span></button>
+                    <button type='submit' style="margin: 5px"  class='btn btn-primary' onclick="window.location.href='Admin.php';"><span class='glyphicon glyphicon-arrow-left'></span></button> 
+                    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>
                 </div>
-=======
-            <form action="Admin.php">       
-                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'> 
-                    <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
-                    <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>     
-                    </form> 
->>>>>>> ba0c8956419a69de0392488edba93d5fbd9c4091
             </ul>
             </div>
         </div>
