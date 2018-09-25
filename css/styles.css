@@ -2,13 +2,14 @@
     border-radius: 5px;
     border: nome;
     color: white;
-    padding: 18 px 20 px;
-    font-size: 16 px;
+    padding: 18px 20px;
+    font-size: 16px;
 }
-#button{
-    text-align: right;
+#miopulsante{
+    position: absolute;
+    left: 335px;
 }
 .success{background-color: #4CAF50;}
 .success:hover {background-color: #46a049;}
-.page-header{height: 50 px;}
+.page-header{height: 50px;}
 .col{color: red;}
