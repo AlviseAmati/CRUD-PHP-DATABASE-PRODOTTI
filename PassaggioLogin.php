@@ -7,7 +7,6 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
         include("config.php");
         $username = $_POST['username'];
         $password = md5($_POST['password']);
-        
         $sql = "SELECT IdUtente, NomeUtente, IdRuoli, Passwords, Abilitazione FROM utenti";
         $stmt1 = $db->prepare($sql);
         $stmt1-> execute();
@@ -63,10 +62,7 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
                 else
                 header('location:Admin.php');
             } 
-        
- 
- 
-
+            $Abilitazione=1;
         }
         if($verifica == 0 && $Abilitazione != 0)
         { 
