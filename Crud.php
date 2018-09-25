@@ -1,14 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['Verifica']))
-{
-if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
-{
-    if ($_SESSION['Ruolo'] == 'Ospite')
-        $ruolo = 'Ospite';
-    else
-        $ruolo = 'Amministratore';
-}
+if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo'])){
 ?>
 
 <!DOCTYPE html>
@@ -33,20 +25,22 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
-            <form action="Admin.php">       
-                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'> 
-                    <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
-                    <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut();'><span class='glyphicon glyphicon-log-out'></span></button>     
-                    </form> 
+                <div class="form-group has-feedback">
+                    <div class="search-control">
+                    <input type="search" id="research"  onkeyup='Ricerca("Prodotti");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Prodotti");' >Search</button>
+                </div>
+                </div>
             </ul>
             </div>
         </div>
     </nav>
-    <div class="container" style="align-right" id="mostra">
-    <?php if($ruolo == 'Amministratore'){?>
+    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>
+    <div class="container" style="align-right" id="mostra">                      
+    <?php if($ruolo == 'Amministratore') {?>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungi('Prodotti');"><span class="glyphicon glyphicon-plus"></span></button>
-        <button type='submit' class='btn btn-danger' name='btnDelete' onclick='cancella("Prodotti");'><span class='glyphicon glyphicon-minus'></span></button>
-        <button type='submit' class='btn btn-primary' name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Prodotti');"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button type='submit' id="Cancella" class='btn btn-danger' disabled="true" name='btnDelete' onclick='cancella("Prodotti");'><span class='glyphicon glyphicon-minus'></span></button>
+        <button type='submit' id="Modifica" class='btn btn-primary' disabled="true" name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Prodotti');"><span class='glyphicon glyphicon-pencil'></span></button>        
     <?php } ?>
         <!-- form modale per Aggiungi-->
         <div class="modal fade" id="myModal" role="dialog">
@@ -58,13 +52,13 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <p id="titolo"></p>
                     </div>
                     <div class="modal-body">
-                        <label for="Descrizione">Descrizione:</label>
+                        <label for="Descrizione">Descrizione: </label> 
                         <input type="text" class="form-control" name="Descrizione" id="Descrizione" placeholder="Descrizione" required>
                         <br>
                         <label for="Prezzo">Prezzo:</label>
                         <input type="text" class="form-control" name="Prezzo" id="Prezzo" placeholder="Prezzo" required>
                         <br>
-                        <label for="QuantitaDisponibile">Quantita:</label>
+                        <label for="QuantitaDisponibile">Quantità:</label>
                         <input type="text" class="form-control" name="QuantitaDisponibile" id="QuantitaDisponibile" placeholder="Quantita Disponibile" required>
                         <label for="IdMagazzino">Magazzino:</label>
                         <select id="IdMagazzino">
@@ -102,11 +96,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
     <p id="prova" class="hidden"></p>
 </body>
 </html>
-<?php }
-else
+<?php 
+}else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    include("Logout.php");
 }?>

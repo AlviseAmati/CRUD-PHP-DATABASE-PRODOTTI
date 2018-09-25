@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['Verifica']))
-{
-if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
+if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
 {
     if ($_SESSION['Ruolo'] == 'Ospite')
         $ruolo = 'Ospite';
@@ -34,11 +32,19 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <div class="container">
             <ul class="nav navbar-form navbar-right">
                 <div class="form-group has-feedback">
+<<<<<<< HEAD
+                    <div class="search-control">
+                    <input type="search" id="research"  onkeyup='Ricerca("Ruoli");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Ruoli");' >Search</button>
+                </div>
+                </div>
+=======
                 <form action="Admin.php">       
                     <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'> 
                     <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
                     <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut();'><span class='glyphicon glyphicon-log-out'></span></button>     
                     </form> 
+>>>>>>> ba0c8956419a69de0392488edba93d5fbd9c4091
             </ul>
             </div>
         </div>
@@ -54,7 +60,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     <div class="modal-body">
                         <input type="hidden" class="form-control"  name="IdRuoli" id="IdRuoli" placeholder="IdRuoli" required>
                         <br>
-                        <label for="DescrizioneRuolo">DescrizioneRuolo:</label>
+                        <label for="DescrizioneRuolo">Descrizione Ruolo:</label>
                         <input type="text" class="form-control" name="DescrizioneRuolo" id="DescrizioneRuolo" placeholder="DescrizioneRuolo" required>
                         <br>                             
                     </div>
@@ -81,8 +87,5 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
 <?php }
 else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    include("Logout.php");
 }?>

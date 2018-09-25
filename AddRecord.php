@@ -6,7 +6,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
 
     $NomeUtente = $_SESSION['IdUtente'];
     $IdOperazione = $_SESSION['Descrizione'];
-
+    
     $sql = "SELECT DescrizioneOperazione FROM operazionieseguite WHERE IdOperazione = 3";
     $stmt = $db->prepare($sql);
     $stmt->execute();
@@ -19,6 +19,18 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
 
     if(isSet($_GET['NomeUtente']) && isSet($_GET['Passwords']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli'] )&& isSet($_GET['Abilitazione']) )
     {
+<<<<<<< HEAD
+        $NomeUtente = filter_var($_GET['NomeUtente'], FILTER_SANITIZE_STRING);
+        $Passwords = filter_var($_GET['Passwords'], FILTER_SANITIZE_STRING);
+        $Nome = filter_var($_GET['Nome'], FILTER_SANITIZE_STRING);
+        $Cognome = filter_var($_GET['Cognome'], FILTER_SANITIZE_STRING);
+        $Mail = filter_var($_GET['Mail'], FILTER_SANITIZE_STRING);
+        $DataNascita = filter_var($_GET['DataNascita'], FILTER_SANITIZE_STRING);
+        $Eta = filter_var($_GET['Eta'], FILTER_SANITIZE_STRING);
+        $Indirizzo = filter_var($_GET['Indirizzo'], FILTER_SANITIZE_STRING);
+        $CodiceFiscale = filter_var($_GET['CodiceFiscale'], FILTER_SANITIZE_STRING);
+        $IdRuoli = filter_var($_GET['IdRuoli'], FILTER_SANITIZE_STRING);
+=======
         $NomeUtente = htmlentities($_GET['NomeUtente']);
         $str=htmlentities($_GET['Passwords']);
         $Passwords = md5($str);
@@ -31,6 +43,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
         $IdRuoli = htmlentities($_GET['IdRuoli']);
         $Abilitazione = htmlentities($_GET['Abilitazione']);
         $DataReg = date("Ymd");
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 
 
         $sql = "INSERT INTO utenti (NomeUtente, Passwords, Nome, Cognome, Mail, DataNascita, Eta, Indirizzo, CodiceFiscale, IdRuoli, Abilitazione,DataReg) VALUES(:NomeUtente,:Passwords,:Nome,:Cognome,:Mail,:DataNascita,:Eta,:Indirizzo,:CodiceFiscale,:IdRuoli,:Abilitazione,:DataReg)";
@@ -107,8 +120,5 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
 }
 else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    header("Logout.php");
 }

@@ -1,47 +1,32 @@
 <?php
 session_start();
-if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ruolo'] == 'Amministratore')
+include("Config.php");
+
+session_start();
+if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
 {
-    include("config.php");
-    $sql = "SELECT DescrizioneOperazione FROM operazionieseguite WHERE IdOperazione = 5";
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-    {
-        $DescrizioneOperazione = $row['DescrizioneOperazione'];
-    }      
-
-    $NomeUtente  = $_SESSION['IdUtente'];
-    $IdOperazione = $_SESSION['Descrizione'];
-    $tabella  = $_GET['tabella'];
-
-    if($tabella == 'Utenti')
-    {
-        $IdUtente = $_GET['Id'];
-        $sql = "DELETE FROM utenti WHERE IdUtente = :idutente";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':idutente', $IdUtente, PDO::PARAM_INT);   
+    try {
+        $sql = "SHOW COLUMNS From ".$_GET['tabella'];    //prendere nome id in base a tabella
+        $stmt = $db->prepare($sql);     
         $stmt->execute();
-        $DescrizioneOperazione = $DescrizioneOperazione . ' dalla tabella ' . $tabella;
-    }
-    if($tabella == 'Magazzini')
-    {
-        $IdMagazzino = $_GET['Id'];
-        $sql = "DELETE FROM magazzino WHERE IdMagazzino = :idmagazzino";
+        $field = $stmt->fetch(PDO::FETCH_ASSOC);
+        $campo=$field['Field'];
+        $db->beginTransaction();
+        $sql = "DELETE FROM " .$_GET['tabella']. " WHERE ".$campo."=:id";       
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':idmagazzino', $IdMagazzino, PDO::PARAM_INT);   
-        $stmt->execute();
-        $DescrizioneOperazione = $DescrizioneOperazione . ' dalla tabella ' . $tabella;
+        $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT);   
+        $stmt->execute();     
+        $db->commit();
+        $operazione="eliminato record " . $_GET['id'];
+        include("QueryLog.php");
+    } 
+    catch (PDOException $e) {
+        $db->rollBack();
+    echo $e->getMessage();  
     }
-    if($tabella== 'Prodotti')
-    {
-        $IdProdotti=$_GET['Id'];
-        $sql = "DELETE FROM prodotti WHERE IdProdotti = :idprodotti";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':idprodotti', $IdProdotti, PDO::PARAM_INT);   
-        $stmt->execute();
-        $DescrizioneOperazione = $DescrizioneOperazione . ' dalla tabella ' . $tabella;
-    }
+<<<<<<< HEAD
+}
+=======
 
     $DataOra = date ("d/m/Y G:i");
     $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
@@ -60,3 +45,4 @@ else
     header('location:Login.php');
 }
 ?>
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69

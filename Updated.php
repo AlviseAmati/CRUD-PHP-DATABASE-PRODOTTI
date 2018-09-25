@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ruolo'] == 'Amministratore')
+if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']) && $_SESSION['Ruolo'] == 'Amministratore')
 {
     include("config.php");
     $NomeUtente = $_SESSION['IdUtente'];
@@ -16,8 +16,20 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
 
     if(isSet($_GET['NomeUtente']) && isSet($_GET['Nome']) && isSet($_GET['Cognome']) && isSet($_GET['Mail']) && isSet($_GET['DataNascita']) && isSet($_GET['Indirizzo']) && isSet($_GET['CodiceFiscale']) && isSet($_GET['IdRuoli']) && isSet($_GET['Abilitazione']) )
     {
-        $IdUtente = htmlentities($_GET['Id']);
+        $IdUtente = filter_var($_GET['Id'], FILTER_SANITIZE_STRING);
 
+<<<<<<< HEAD
+        $NomeUtente = filter_var($_GET['NomeUtente'], FILTER_SANITIZE_STRING);
+        $Passwords = filter_var($_GET['Passwords'], FILTER_SANITIZE_STRING);
+        $Nome = filter_var($_GET['Nome'], FILTER_SANITIZE_STRING);
+        $Cognome =filter_var($_GET['Cognome'], FILTER_SANITIZE_STRING);
+        $Mail = filter_var($_GET['Mail'], FILTER_SANITIZE_STRING);
+        $DataNascita = filter_var($_GET['DataNascita'], FILTER_SANITIZE_STRING);
+        $Eta = filter_var($_GET['Eta'], FILTER_SANITIZE_STRING);
+        $Indirizzo = filter_var($_GET['Indirizzo'], FILTER_SANITIZE_STRING);
+        $CodiceFiscale = filter_var($_GET['CodiceFiscale'], FILTER_SANITIZE_STRING);
+        $IdRuoli = filter_var($_GET['IdRuoli'], FILTER_SANITIZE_STRING);
+=======
         $NomeUtente = htmlentities($_GET['NomeUtente']);
         $Nome = htmlentities($_GET['Nome']);
         $Cognome = htmlentities($_GET['Cognome']);
@@ -30,6 +42,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
         if(date("m")<substr($DataNascita,4,2)) $Eta=$Eta-1;    
         else if(date("m")==substr($DataNascita,4,2) && date("d")<substr($DataNascita,6,2)) $Eta=$Eta-1;
         $Abilitazione = htmlentities($_GET['Abilitazione']);
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 
         $sql = "UPDATE utenti SET NomeUtente = :NomeUtente, Nome = :Nome, Cognome = :Cognome, Mail = :Mail, DataNascita = :DataNascita, Eta = :Eta, Indirizzo = :Indirizzo, CodiceFiscale = :CodiceFiscale, IdRuoli = :IdRuoli Abilitazione=:Abilitazione WHERE IdUtente=:id";
 
@@ -48,14 +61,13 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
 
         $stmt->execute(); 
         $DescrizioneOperazione = $DescrizioneOperazione . ' nella tabella Utenti ';
-        
     }
 
     if(isset($_GET['DescrizioneMagazzino'])&&isSet($_GET['Ubicazione']))
     {
-        $IdMagazzino = htmlentities($_GET['Id']);
-        $DescrizioneMagazzino = htmlentities($_GET['DescrizioneMagazzino']);
-        $Ubicazione = htmlentities($_GET['Ubicazione']);
+        $IdMagazzino = filter_var($_GET['Id'], FILTER_SANITIZE_STRING);
+        $DescrizioneMagazzino = filter_var($_GET['DescrizioneMagazzino'], FILTER_SANITIZE_STRING);
+        $Ubicazione = filter_var($_GET['Ubicazione'], FILTER_SANITIZE_STRING);
 
         $sql = "UPDATE magazzino SET DescrizioneMagazzino = :descrizione, Ubicazione = :ubicazione WHERE IdMagazzino=:id";
 
@@ -69,11 +81,19 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
     }
     if(isSet($_GET['Id'])&&isSet($_GET['Descrizione'])&&isSet($_GET['Prezzo'])&&isSet($_GET['QuantitaDisponibile'])&&isSet($_GET['IdMagazzino'])) 
     {
+<<<<<<< HEAD
+        filter_var($_GET['Id'], FILTER_SANITIZE_STRING);
+        filter_var($_GET['Descrizione'], FILTER_SANITIZE_STRING);
+        filter_var($_GET['Prezzo'], FILTER_SANITIZE_STRING);
+        filter_var($_GET['QuantitaDisponibile'], FILTER_SANITIZE_STRING);
+        filter_var($_GET['IdMagazzino'], FILTER_SANITIZE_STRING);
+=======
         $IdProdotti = htmlentities($_GET['Id']);
         $Descrizione = htmlentities($_GET['Descrizione']);
         $Prezzo = htmlentities($_GET['Prezzo']);
         $QuantitaDisponibile = htmlentities($_GET['QuantitaDisponibile']);
-        $IdMagazzino = htmlentities( $_GET['IdMagazzino']);
+        $IdMagazzino = htmlentities($_GET['IdMagazzino']);
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 
         $sql = "UPDATE prodotti SET Descrizione = :descrizione, Prezzo = :prezzo,  QuantitaDisponibile = :quantitadisponibile, IdMagazzino = :idmagazzino WHERE IdProdotti=:idprodotti";
 
@@ -98,9 +118,6 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
 }
 else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    header("Logout.php");
 }
 ?>

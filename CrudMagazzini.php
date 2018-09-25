@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['Verifica']) && $_SESSION['Ruolo'] == 'Amministratore')
-{
-if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
+if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
 {
     if ($_SESSION['Ruolo'] == 'Ospite')
         $ruolo = 'Ospite';
@@ -33,11 +31,18 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
+<<<<<<< HEAD
+                <div class="form-group has-feedback">
+                    <input type="search" id="research"  onkeyup='Ricerca("Magazzini");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Magazzini");' >Search</button>
+                </div>
+=======
             <form action="Admin.php">       
                     <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'> 
                     <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
                     <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>     
                     </form> 
+>>>>>>> ba0c8956419a69de0392488edba93d5fbd9c4091
             </ul>
             </div>
         </div>
@@ -45,8 +50,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
     <div class="container" style="align-right" id="mostra">
     <?php if($ruolo == 'Amministratore'){?>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungiMagazzino('Magazzini');"><span class="glyphicon glyphicon-plus"></span></button>
-        <button type='submit' class='btn btn-danger' name='btnDelete' onclick='cancella("Magazzini");'><span class='glyphicon glyphicon-minus'></span></button>
-        <button type='submit' class='btn btn-primary' name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Magazzini');"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button type='submit' class='btn btn-danger' id="Cancella" disabled="true" name='btnDelete' onclick='cancella("Magazzini");'><span class='glyphicon glyphicon-minus'></span></button>
+        <button type='submit' class='btn btn-primary' id="Modifica" disabled="true" name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdMagazzino, 'Magazzini');"><span class='glyphicon glyphicon-pencil'></span></button>
     <?php } ?>
         <!-- form modale per Aggiungi-->
         <div class="modal fade" id="myModal" role="dialog">
@@ -60,7 +65,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     <div class="modal-body">
                         <input type="hidden" class="form-control"  name="IdMagazzino" id="IdMagazzino" placeholder="IdMagazzino" required>
                         <br>
-                        <label for="DescrizioneMagazzino">DescrizioneMagazzino:</label>
+                        <label for="DescrizioneMagazzino">Descrizione Magazzino:</label>
                         <input type="text" class="form-control" name="DescrizioneMagazzino" id="DescrizioneMagazzino" placeholder="Descrizione" required>
                         <br>
                         <label for="Ubicazione">Ubicazione:</label>
@@ -90,8 +95,5 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
 <?php }
 else
 {
-    echo "<script language='JavaScript'>\n"; 
-    echo "alert('Accesso negato: torna indietro');\n"; 
-    echo"window.location.href = 'Login.php';";
-    echo "</script>"; 
+    include("Logout.php");
 }?>

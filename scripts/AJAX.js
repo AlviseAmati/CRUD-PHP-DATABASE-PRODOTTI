@@ -1,12 +1,86 @@
+$(document).ready(function () {
+    $(document).on('click', '.CrescenteId', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'CrescenteId');
+    });
+
+    $(document).on('click', '.DecrescenteId', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'DecrescenteId');
+    });
+
+    $(document).on('click', '.CrescenteDescrizione', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'CrescenteDescrizione');
+    });
+
+    $(document).on('click', '.DecrescenteDescrizione', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'DecrescenteDescrizione');
+    });
+
+    $(document).on('click', '.CrescentePrezzo', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'CrescentePrezzo');
+    });
+
+    $(document).on('click', '.DecrescentePrezzo', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'DecrescentePrezzo');
+    });
+
+    $(document).on('click', '.CrescenteQuantitaDisponibile', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'CrescenteQuantitaDisponibile');
+    });
+
+    $(document).on('click', '.DecrescenteQuantitaDisponibile', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'DecrescenteQuantitaDisponibile');
+    });
+
+    $(document).on('click', '.CrescenteDescrizioneMagazzino', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'CrescenteDescrizioneMagazzino');
+    });
+
+    $(document).on('click', '.DecrescenteDescrizioneMagazzino', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'DecrescenteDescrizioneMagazzino');
+    });
+
+    $(document).on('click', '.CrescenteMagazzino', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'CrescenteMagazzino');
+    });
+
+    $(document).on('click', '.DecrescenteMagazzino', function () {
+        //alert("ciao");
+        $("#id_table").load("Select.php?tabella=" + 'Prodotti'  + "&Ordinamento=" + 'DecrescenteMagazzino');
+    });
+});  
+
 function selection(tabella){
-    if(tabella == 'SelectLog.php')
-        $("#id_table").load("SelectLog.php");
-    else
-        $("#id_table").load("Select.php?tabella=" + tabella);
+    $("#id_table").load("Select.php?tabella=" + tabella);
     $("#id_table").hide();
     $("#id_table").fadeIn(1000);
 }
 
+<<<<<<< HEAD
+function selectLog(page){
+    $("#tabella").load(page);
+}
+
+=======
+
+function Abilita()
+{
+    $("#Cancella").removeAttr("disabled");
+    $("#Modifica").removeAttr("disabled");
+}
+
+
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 function update(IdProdotti, tabella, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino) 
 {
         $("#prova").load("Updated.php?Id=" + IdProdotti + "&Descrizione=" + Descrizione + "&Prezzo=" + Prezzo + "&QuantitaDisponibile=" + QuantitaDisponibile + "&IdMagazzino=" + IdMagazzino , function () {
@@ -66,7 +140,7 @@ function cancella(tabella){
 }
 
 function LogOut(){
-    $("#prova").load("PassaggioLogin.php?LogOut=" + 1, function () { 
+    $("#prova").load("Logout.php", function () { 
         Redirect();
     });
 }
@@ -205,9 +279,13 @@ function formAggiungi(){
     $("#titolo").text("Aggiungi un prodotto");
     
     $("#insert").click(function(){
-        aggiungiProdotto($('#Descrizione').val(), $('#Prezzo').val(),$('#QuantitaDisponibile').val(),$('#IdMagazzino').val());
+        if($('#Prezzo').val() >0 && $('#QuantitaDisponibile').val() >0)
+            aggiungiProdotto($('#Descrizione').val(), $('#Prezzo').val(),$('#QuantitaDisponibile').val(),$('#IdMagazzino').val());
+        else
+            alert('Hai inserito un prezzo o una quantità sbagliata');
     });
 }
+
 function formAggiungiMagazzino (){
     $("#insert").unbind();
     $("#DescrizioneMagazzino").val("");
@@ -251,4 +329,8 @@ function resetInfo(){
     //cancella il contenuto del paragrafo info sull'evento onmouseout
     $('#info').hide();
     $('#info').text('');
+}
+
+function errorLogin(){
+    $('#error').text('username o password non corretti');
 }

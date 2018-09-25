@@ -1,4 +1,4 @@
-<?php  session_start(); if($_SESSION['Verifica'] == 1 && $_SESSION['Ruolo'] == 'Amministratore')
+<?php  session_start(); if(isSet($_SESSION['NomeUtente']) && isSet($_SESSION['Ruolo']))
 { ?>
 <!DOCTYPE html>
 <!--<html lang="en">
@@ -28,7 +28,7 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse" id="navigation">
-    <form class="form-inline">
+    <form class="form-inline" action ="Login.php">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand">Menu Admin</a>
@@ -59,9 +59,13 @@
 <?php } 
 else
 {
+<<<<<<< HEAD
+    include("Logout.php");
+=======
     echo "<script language='JavaScript'>\n"; 
     //echo "alert('Accesso negato: torna indietro');\n"; 
     echo"window.location.href = 'Login.php';";
     echo "</script>"; 
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 }?>
 </html>
