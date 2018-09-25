@@ -1,24 +1,25 @@
 <?php
 session_start();
-if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['LogOut'])) 
+if ((isset($_POST['username']) && isset( $_POST['password'])&& $_POST['controllobot'] =="") || isset($_GET['LogOut']))
 {
     include("config.php");
     
     $sql = "SELECT NomeUtente, Passwords, DescrizioneRuolo, Abilitazione FROM utenti INNER JOIN ruoli ON utenti.IdRuoli=ruoli.IdRuoli WHERE NomeUtente=:username AND Passwords=:passwords";
-    
+    $Pass= md5($_POST['password']);
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':username', $_POST['username'], PDO::PARAM_STR);
-    $stmt->bindParam(':passwords', md5($_POST['password']), PDO::PARAM_STR);
+    $stmt->bindParam(':passwords', $Pass, PDO::PARAM_STR);
     $stmt-> execute();
     $row =$stmt->fetch(PDO::FETCH_ASSOC);
 
     if($row){
         if($row['Abilitazione']==0) header("location:Login.php?error=2");
-        else{
+        else
+        {
             $DataOra = date ("d/m/Y G:i");
             $_SESSION['NomeUtente'] = filter_var($row['NomeUtente'], FILTER_SANITIZE_STRING);
             $_SESSION['Ruolo'] = filter_var($row['DescrizioneRuolo'], FILTER_SANITIZE_STRING);
-
+            $DescrizioneOperazione ="Accesso";
             $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':nomeutente', $_SESSION['NomeUtente'], PDO::PARAM_STR);

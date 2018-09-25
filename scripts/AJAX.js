@@ -278,7 +278,7 @@ function formAggiungi(){
     $("#titolo").text("Aggiungi un prodotto");
     
     $("#insert").click(function(){
-        if($('#Prezzo').val() >0 && $('#QuantitaDisponibile').val() >0)
+        if($('#QuantitaDisponibile').val() >0)
             aggiungiProdotto($('#Descrizione').val(), $('#Prezzo').val(),$('#QuantitaDisponibile').val(),$('#IdMagazzino').val());
         else
             alert('Hai inserito un prezzo o una quantità sbagliata');

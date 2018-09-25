@@ -18,7 +18,6 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
     <script language="JavaScript" type="text/JavaScript" src="scripts/AJAX.js"></script>
 </head>
 <?php echo "<body onload=selectLog('SelectLog.php?page=$page');>"; ?>
-<form>
     <!-- navbar -->
     <nav class="navbar navbar-inverse" id="navigation">
         <div class="container-fluid">
@@ -44,7 +43,6 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         </div>
     </div>
     <p id="prova" class="hidden"></p>
-</form>
 </body>
 </html>
 <?php 

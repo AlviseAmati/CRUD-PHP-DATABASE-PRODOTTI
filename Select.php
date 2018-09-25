@@ -42,7 +42,7 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         echo "
             <thead>
             <tr>
-            <th>IdRuoli</th> 
+            <th>Id Ruoli</th> 
             <th onclick='sorting(1);'>Descrizione Ruolo</th>
             </tr>
             </thead>";
@@ -151,7 +151,7 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         echo "
             <thead>
             <tr>
-            <th>IdMagazzino</th>
+            <th>Id Magazzino</th>
             <th onclick='sorting(1);'>Descrizione Magazzino</th>
             <th onclick='sorting(2);'>Ubicazione</th>
             </tr>
@@ -218,7 +218,6 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
             <th onclick='sorting(2);'>Prezzo  <span class='CrescentePrezzo'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescentePrezzo'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
             <th onclick='sorting(3);'>Quantità Disponibile   <span class='CrescenteQuantitaDisponibile'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteQuantitaDisponibile'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
             <th onclick='sorting(4);'>Descrizione Magazzino  <span class='CrescenteDescrizioneMagazzino'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizioneMagazzino'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
-            <th onclick='sorting(5);'>Magazzino  <span class='CrescenteMagazzino'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteMagazzino'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
             </tr>
             </thead>";
 
@@ -248,10 +247,9 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
                         echo "<tr>"; 
                         echo "<td>" . $IdProdotti . "</td>";
                         echo "<td onclick='sorting(1);'>" . $Descrizione . "</td>";
-                        echo "<td onclick='sorting(2);'>" . $Prezzo . "</td>";
+                        echo "<td onclick='sorting(2);'>€ " . $Prezzo . "</td>";
                         echo "<td onclick='sorting(3);'>" . $QuantitaDisponibile . "</td>";
                         echo "<td onclick='sorting(4);'>" . $DescrizioneMagazzino1 . "</td>";
-                        echo "<td onclick='sorting(5);'>" . $IdMagazzino . "</td>";
                         if($ruolo == 'Amministratore') 
                             echo "<td> <input type='radio' onclick='Abilita()' name='seleziona' value='".$IdProdotti."'> </td>";
                         echo "</tr>";

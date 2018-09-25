@@ -71,7 +71,8 @@ if (isset($_SESSION['NomeUtente']) && $_SESSION['Ruolo'] == 'Amministratore')
     if(isSet($_GET['Descrizione'])&&isSet($_GET['Prezzo'])&&isSet($_GET['QuantitaDisponibile'])&&isSet($_GET['IdMagazzino'])) 
     {
         $Descrizione = htmlentities($_GET['Descrizione']);
-        $Prezzo = htmlentities($_GET['Prezzo']);
+        $num = htmlentities($_GET['Prezzo']);
+        $Prezzo = strtr($num,',','.');
         $QuantitaDisponibile = htmlentities($_GET['QuantitaDisponibile']);
 
         $IdMagazzino= htmlentities($_GET['IdMagazzino']);
