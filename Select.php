@@ -79,7 +79,6 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <tr>
             <th>Id Utente</th>
             <th onclick='sorting(1);'>Nome Utente</th>
-            <th onclick='sorting(3);'>Passwords</th>
             <th onclick='sorting(4);'>Nome</th>
             <th onclick='sorting(5);'>Cognome</th>
             <th onclick='sorting(6);'>Mail</th>
@@ -88,6 +87,8 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <th onclick='sorting(9);'>Indirizzo</th>
             <th onclick='sorting(10);'>Codice Fiscale</th>
             <th onclick='sorting(11);'>Ruoli</th>
+            <th onclick='sorting(12);'>Abilitazione</th>
+            <th onclick='sorting(13);'>DataReg</th>
             </tr>
             </thead>";
             
@@ -97,7 +98,6 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                 {
                     $IdUtente = $row['IdUtente'];
                     $NomeUtente = $row['NomeUtente'];
-                    $Passwords = $row['Passwords'];
                     $Nome = $row['Nome'];
                     $Cognome = $row['Cognome'];
                     $Mail = $row['Mail'];
@@ -106,21 +106,33 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     $Indirizzo = $row['Indirizzo'];
                     $CodiceFiscale = $row['CodiceFiscale'];
                     $IdRuoli = $row['DescrizioneRuolo'];
+                    $Abilitazione=$row['Abilitazione'];
+                    $Data=$row['DataReg'];
+                    $DataReg=substr($Data,0,4) . "/" . substr($Data,4,2) . "/" . substr($Data,6,2);
+                    $Data=substr($DataNascita,0,4) . "/" . substr($DataNascita,4,2) . "/" .  substr($DataNascita,6,2);
                     echo "<tr>"; 
                     echo "<td>" . $IdUtente . "</td>";
                     echo "<td onclick='sorting(1);'>" . $NomeUtente . "</td>";
-                    echo "<td onclick='sorting(2);'>" . $Passwords . "</td>";
                     echo "<td onclick='sorting(3);'>" . $Nome . "</td>";
                     echo "<td onclick='sorting(4);'>" . $Cognome . "</td>";
                     echo "<td onclick='sorting(5);'>" . $Mail . "</td>";
-                    echo "<td onclick='sorting(6);'>" . $DataNascita . "</td>";
+                    echo "<td onclick='sorting(6);'>" . $Data . "</td>";
                     echo "<td onclick='sorting(7);'>" . $Eta . "</td>";
                     echo "<td onclick='sorting(8);'>" . $Indirizzo . "</td>";
                     echo "<td onclick='sorting(9);'>" . $CodiceFiscale . "</td>";
                     echo "<td onclick='sorting(10);'>" . $IdRuoli . "</td>";
-                    if($ruolo == 'Amministratore') 
-                        echo "<td> <input type='radio' onclick='Abilita()' name='seleziona' value='".$IdUtente."'> </td>";
-                    echo "</tr>";
+                    echo "<td onclick='sorting(11);'>" . $Abilitazione . "</td>";
+                    echo "<td onclick='sorting(12);'>" . $DataReg . "</td>";
+
+                    
+                        if($IdRuoli!='Amministratore')
+                        {
+                            echo "<td> <input type='radio' onclick='Abilita()'  name='seleziona' value='".$IdUtente."'> </td>";
+                            echo "</tr>";
+                        }
+                    
+
+                        
                 }
             }
     }
