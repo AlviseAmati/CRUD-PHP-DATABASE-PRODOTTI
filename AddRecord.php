@@ -89,6 +89,12 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['R
     }
     if($valido == 1)
     {
+        $sql="SELECT MAX(IdProdotti) AS Id FROM prodotti";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $row=$stmt->fetch(PDO::FETCH_ASSOC);
+        $IdProdotto=$row['Id'];
+        $DescrizioneOperazione="Record $IdProdotto aggiunto alla tabella Prodotti";
         $DataOra = date ("d/m/Y G:i");
         $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
         //$sql2 = "INSERT INTO prodotti (Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino) VALUES ('$Descrizione', $Prezzo , $QuantitaDisponibile , $IdMagazzino)";

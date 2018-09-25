@@ -90,6 +90,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']) && $_SESSION['Ru
     $DataOra = date ("d/m/Y G:i");
     $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
     $stmt = $db->prepare($sql);
+    $DescrizioneOperazione="Record $IdProdotti modificato nella tabella Prodotti";
     $stmt->bindParam(':nomeutente', $NomeUtente, PDO::PARAM_STR);
     $stmt->bindParam(':dataora', $DataOra, PDO::PARAM_STR);
     $stmt->bindParam(':descrizioneoperazione', $DescrizioneOperazione, PDO::PARAM_STR);

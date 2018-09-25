@@ -5,22 +5,30 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" >
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css">-->
 </head>
 <body>
 <form action="PassaggioLogin.php" method="POST">
     <div class="row" align="center">
-        <div class="col-xs-11" align="center"><h1>INSERISCI I DATI</h1></div>
-      <div class="col-xs-9 col-sm-9 col-md-9 col-xs-offset-1" >                 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input name="username" type="text" class="form-control" id="username" placeholder="Inserisci qui il tuo nome utente" required>
+        <div class="col-xs-12" align="center"><h3>INSERISCI I DATI</h2></div>
+        <br>
+      <div class="col-xs-5 col-sm-4 col-md-4 col-xs-offset-4 form-inline" >                 
+            <div class="form">
+                <br>
+                <label for="username"><h4>Username:</h4></label>
+                <input name="username" type="text" class="form-control" id="username" placeholder="Nome Utente" required>
+                <br><br>
             </div>
-            <div class="form-group">
-                <label for="username">Password</label>
-                <input name="password" type="password" class="form-control" id="password" placeholder="Inserisci qui la tua password" required>
+            <div class="form">
+                <label for="username"><h4>Password:</h4></label>
+                <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+                <br><br>
             </div>
             <button type="submit" class="btn btn-primary"> Accedi </button>
+        </div>
         </div>
     </div>
 </form>
