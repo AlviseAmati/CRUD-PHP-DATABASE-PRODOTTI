@@ -185,9 +185,14 @@ function formAggiorna(IdMagazzino,tabella)
         $("#CodiceFiscale").val(CodiceFiscale);
         $("#IdRuoli").val(IdRuoli);
         $("#Abilitazione").val(Abilitazione);
-        $("#insert").click(function(){
+
+        $("#form").on('submit',function(){
+            $('#myModal').modal('hide');
             updateUtenti(Id,tabella, $('#NomeUtente').val(), $('#Passwords').val(), $('#Nome').val(), $('#Cognome').val(), $('#Mail').val(), $('#DataNascita').val(), $('#Indirizzo').val(), $('#CodiceFiscale').val(), $('#IdRuoli').val(),$('#Abilitazione').val());
         });
+       /* $("#insert").click(function(){
+            updateUtenti(Id,tabella, $('#NomeUtente').val(), $('#Passwords').val(), $('#Nome').val(), $('#Cognome').val(), $('#Mail').val(), $('#DataNascita').val(), $('#Indirizzo').val(), $('#CodiceFiscale').val(), $('#IdRuoli').val(),$('#Abilitazione').val());
+        });*/
     }
 }
 
@@ -198,6 +203,7 @@ function formAggiungi(){
     $("#QuantitaDisponibile").val("");
     $('#IdMagazzino').val("")
     $("#titolo").text("Aggiungi un prodotto");
+    
     $("#insert").click(function(){
         aggiungiProdotto($('#Descrizione').val(), $('#Prezzo').val(),$('#QuantitaDisponibile').val(),$('#IdMagazzino').val());
     });
@@ -225,11 +231,14 @@ function formAggiungiUtente (){
     $("#IdRuoli").val("");
     $("#Abilitazione").val("");
     $("#titolo").text("Aggiungi un Utente");
-
-  
-    $("#insert").click(function(){
+    $("#form").on('submit',function(){
+        $('#myModal').modal('hide');
         aggiungiUtente($('#NomeUtente').val(),$('#Passwords').val(),$('#Nome').val(),$('#Cognome').val(),$('#Mail').val(),$('#DataNascita').val(),$('#Indirizzo').val(),$('#CodiceFiscale').val(),$('#IdRuoli').val(),$('#Abilitazione').val());
     });
+  
+   /* $("#insert").click(function(){
+        aggiungiUtente($('#NomeUtente').val(),$('#Passwords').val(),$('#Nome').val(),$('#Cognome').val(),$('#Mail').val(),$('#DataNascita').val(),$('#Indirizzo').val(),$('#CodiceFiscale').val(),$('#IdRuoli').val(),$('#Abilitazione').val());
+    });*/
 }
 
 function info() {

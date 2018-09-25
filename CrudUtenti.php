@@ -65,8 +65,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <p id="titolo"></p>
                     </div>
+                    <form id="form">
                     <div class="modal-body">
-                    <form>
                         <input type="hidden" class="form-control"  name="IdUtente" id="IdUtente" required>
                         <br>
                         <label for="NomeUtente">Nome Utente:</label>
@@ -91,15 +91,16 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <select class="form-control" id = 'IdRuoli'> <option value='1'> Ospite </option> <option value='2'> Amministratore </option> </select> 
                         <label for="Abilitazione">Abilitazione:</label>
                         <select class="form-control" id = 'Abilitazione'> <option value='0'> Disabilitato </option> <option value='1'> Abilitato </option> </select>                              
-                    </form>
+                    
                     </div>
                     <div class="modal-footer">
                         <br>
                         <br>
-                        <button type="submit" class="btn btn-success" id="insert" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Inserisci</button>
+                        <button type="submit" class="btn btn-success" id="insert" ><span class="glyphicon glyphicon-ok"></span> Inserisci</button>
                         <button type="button" class="btn btn-danger" id="annulla" onclick="annulla();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Annulla </button>
                         <p class="alert alert-danger" id="error" hidden></p>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
