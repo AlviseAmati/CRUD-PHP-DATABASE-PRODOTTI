@@ -88,7 +88,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <th onclick='sorting(10);'>Codice Fiscale</th>
             <th onclick='sorting(11);'>Ruoli</th>
             <th onclick='sorting(12);'>Abilitazione</th>
-            <th onclick='sorting(13);'>DataReg</th>
+            <th onclick='sorting(13);'>Data Registrazione</th>
             </tr>
             </thead>";
             

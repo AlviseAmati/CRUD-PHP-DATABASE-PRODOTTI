@@ -44,11 +44,15 @@ if (isset($_GET['errore']))
     $errore= $_GET["errore"];
     if($errore == 1)
     {
-         echo "<div class='container'><div class='form-control' align=center>Login fallito, password o username errate</div></div>" ;  
+         echo("<br>");
+         echo("<br>");
+         echo "<div class='container'><div id ='container1' class='form-control' align=center>Login fallito, password o username errate</div></div>" ;  
     }
     else if($errore==2)
     {
-    echo "<div class='container'><div class='form-control' align=center>Login fallito, non sei abilitato </div></div>" ;    
+        echo("<br>");
+        echo("<br>");
+        echo "<div class='container'><div id ='container1' class='form-control' align=center>Login fallito, non sei abilitato </div></div>" ;    
     }
 }
 ?>

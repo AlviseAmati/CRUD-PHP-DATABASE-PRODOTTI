@@ -28,7 +28,7 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse" id="navigation">
-    <form class="form-inline">
+    <form class="form-inline" action ="Login.php">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand">Menu Admin</a>

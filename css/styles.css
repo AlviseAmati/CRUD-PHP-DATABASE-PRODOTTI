@@ -9,6 +9,11 @@
     position: absolute;
     left: 335px;
 }
+#container1{
+    width:300px;
+    margin: auto;
+    border: 3px solid red;
+}
 .success{background-color: #4CAF50;}
 .success:hover {background-color: #46a049;}
 .page-header{height: 50px;}
