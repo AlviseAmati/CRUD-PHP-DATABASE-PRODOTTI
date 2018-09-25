@@ -181,7 +181,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             $valore = $_GET['Valore'];
             $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti WHERE IdProdotti like '%$valore%' OR Descrizione like '%$valore%' OR Prezzo like '%$valore%' OR QuantitaDisponibile like '%$valore%' OR IdMagazzino like '%$valore%' ";
         }
-        if(isset($_GET['Ordinamento']) && ($_GET['Ordinamento'] != 'CrescenteDescrizioneMagazzino' && $_GET['Ordinamento'] != 'DecrescenteDescrizioneMagazzino'))
+        else if(isset($_GET['Ordinamento']) && ($_GET['Ordinamento'] != 'CrescenteDescrizioneMagazzino' && $_GET['Ordinamento'] != 'DecrescenteDescrizioneMagazzino'))
         {
             $ordinamento = $_GET['Ordinamento'];
             if($ordinamento == 'CrescenteId')

@@ -18,7 +18,8 @@
     <div class="row">
         <div class="col-xs-12" align="center"><h3>INSERISCI I DATI</h3></div>
         <br>
-      <div class="col-xs-4 col-sm-4 col-md-4 col-xs-offset-4 form-inline" >                 
+      <div class="col-xs-4 col-sm-4 col-md-4 col-xs-offset-4 form-inline" >  
+      <input type="hidden" id="controllobot">               
             <div class="form" align ="center">
                 <br>
                 <label for="username"><h4>Username:</h4></label>
