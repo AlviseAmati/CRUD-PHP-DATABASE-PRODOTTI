@@ -77,8 +77,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                         <input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome" required>   
                         <label for="Cognome">Cognome:</label>
                         <input type="text" class="form-control" name="Cognome" id="Cognome" placeholder="Cognome" required>   
-                        <label for="Mail">Mail:</label>
-                        <input type="mail" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
+                        <label for="Mail">Email:</label>
+                        <input type="Email" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
                         <label for="DataNascita">Data Nascita:</label>
                         <input type="date" min="01/01/1900" max="01/01/2018" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>           
                         <label for="Indirizzo">Indirizzo:</label>
@@ -95,7 +95,7 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
                     <div class="modal-footer">
                         <br>
                         <br>
-                        <button type="button" class="btn btn-success" id="insert" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Inserisci</button>
+                        <button type="submit" class="btn btn-success" id="insert" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Inserisci</button>
                         <button type="button" class="btn btn-danger" id="annulla" onclick="annulla();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Annulla </button>
                         <p class="alert alert-danger" id="error" hidden></p>
                     </div>
