@@ -108,8 +108,8 @@ if (isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
                     $IdRuoli = $row['DescrizioneRuolo'];
                     $Abilitazione=$row['Abilitazione'];
                     $Data=$row['DataReg'];
-                    $DataReg=substr($Data,0,4) . "/" . substr($Data,4,2) . "/" . substr($Data,6,2);
-                    $Data=substr($DataNascita,0,4) . "/" . substr($DataNascita,4,2) . "/" .  substr($DataNascita,6,2);
+                    $DataReg=substr($Data,6,2) . "/" . substr($Data,4,2) . "/" . substr($Data,0,4);
+                    $Data=substr($DataNascita,6,2) . "/" . substr($DataNascita,4,2) . "/" .  substr($DataNascita,0,4) ;
                     echo "<tr>"; 
                     echo "<td>" . $IdUtente . "</td>";
                     echo "<td onclick='sorting(1);'>" . $NomeUtente . "</td>";

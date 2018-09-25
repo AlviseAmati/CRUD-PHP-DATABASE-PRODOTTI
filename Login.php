@@ -4,7 +4,8 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
 {
     include("config.php");
     
-    $sql = "SELECT NomeUtente, Passwords, DescrizioneRuolo FROM utenti INNER JOIN ruoli ON utenti.IdRuoli=ruoli.IdRuoli WHERE NomeUtente=:username AND Passwords=:passwords";
+    $sql = "SELECT NomeUtente, Passwords, DescrizioneRuolo, Abilitazione FROM utenti INNER JOIN ruoli ON utenti.IdRuoli=ruoli.IdRuoli WHERE NomeUtente=:username AND Passwords=:passwords";
+    
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':username', $_POST['username'], PDO::PARAM_STR);
     $stmt->bindParam(':passwords', md5($_POST['password']), PDO::PARAM_STR);
@@ -12,21 +13,25 @@ if ((isset($_POST['username']) && isset( $_POST['password'])) || isset($_GET['Lo
     $row =$stmt->fetch(PDO::FETCH_ASSOC);
 
     if($row){
-        $DataOra = date ("d/m/Y G:i");
-        $_SESSION['NomeUtente'] = filter_var($row['NomeUtente'], FILTER_SANITIZE_STRING);
-        $_SESSION['Ruolo'] = filter_var($row['DescrizioneRuolo'], FILTER_SANITIZE_STRING);
+        if($row['Abilitazione']==0) header("location:Login.php?error=2");
+        else{
+            $DataOra = date ("d/m/Y G:i");
+            $_SESSION['NomeUtente'] = filter_var($row['NomeUtente'], FILTER_SANITIZE_STRING);
+            $_SESSION['Ruolo'] = filter_var($row['DescrizioneRuolo'], FILTER_SANITIZE_STRING);
 
-        $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':nomeutente', $_SESSION['NomeUtente'], PDO::PARAM_STR);
-        $stmt->bindParam(':dataora', $DataOra, PDO::PARAM_STR);
-        $stmt->bindParam(':descrizioneoperazione', $DescrizioneOperazione, PDO::PARAM_STR);
-        $stmt->execute();
+            $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':nomeutente', $_SESSION['NomeUtente'], PDO::PARAM_STR);
+            $stmt->bindParam(':dataora', $DataOra, PDO::PARAM_STR);
+            $stmt->bindParam(':descrizioneoperazione', $DescrizioneOperazione, PDO::PARAM_STR);
+            $stmt->execute();
         
         if($_SESSION['Ruolo'] == 'Ospite')
             header('location:Crud.php');
         else
             header('location:Admin.php');
+        }
+        
     }
     else{
         session_destroy();
