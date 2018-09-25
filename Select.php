@@ -169,7 +169,7 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             $valore = $_GET['Valore'];
             $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti WHERE IdProdotti like '%$valore%' OR Descrizione like '%$valore%' OR Prezzo like '%$valore%' OR QuantitaDisponibile like '%$valore%' OR IdMagazzino like '%$valore%' ";
         }
-        else if(isset($_GET['Ordinamento']))
+        if(isset($_GET['Ordinamento']) && ($_GET['Ordinamento'] != 'CrescenteDescrizioneMagazzino' && $_GET['Ordinamento'] != 'DecrescenteDescrizioneMagazzino'))
         {
             $ordinamento = $_GET['Ordinamento'];
             if($ordinamento == 'CrescenteId')
@@ -177,8 +177,21 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             else if($ordinamento == 'DecrescenteId')
                 $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY IdProdotti DESC";
             else if($ordinamento == 'CrescenteDescrizione')
-
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY Descrizione ASC";
             else if($ordinamento == 'DecrescenteDescrizione')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY Descrizione DESC";
+            else if($ordinamento == 'CrescentePrezzo')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY Prezzo ASC";
+            else if($ordinamento == 'DecrescentePrezzo')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY Prezzo DESC";
+            else if($ordinamento == 'CrescenteQuantitaDisponibile')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY QuantitaDisponibile ASC";
+            else if($ordinamento == 'DecrescenteQuantitaDisponibile')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY QuantitaDisponibile DESC";
+            else if($ordinamento == 'CrescenteMagazzino')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY IdMagazzino ASC";
+            else if($ordinamento == 'DecrescenteMagazzino')
+                $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti ORDER BY IdMagazzino DESC";
         }
         else 
             $sql = "SELECT IdProdotti, Descrizione, Prezzo, QuantitaDisponibile, IdMagazzino FROM prodotti";
@@ -190,10 +203,10 @@ if (isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             <tr> 
             <th>Id Prodotti <span class='CrescenteId'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteId'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
             <th onclick='sorting(1);'>Descrizione  <span class='CrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
-            <th onclick='sorting(2);'>Prezzo  <span class='CrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
-            <th onclick='sorting(3);'>Quantità Disponibile   <span class='CrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
-            <th onclick='sorting(4);'>Descrizione Magazzino  <span class='CrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
-            <th onclick='sorting(5);'>Magazzino  <span class='CrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizione'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
+            <th onclick='sorting(2);'>Prezzo  <span class='CrescentePrezzo'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescentePrezzo'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
+            <th onclick='sorting(3);'>Quantità Disponibile   <span class='CrescenteQuantitaDisponibile'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteQuantitaDisponibile'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
+            <th onclick='sorting(4);'>Descrizione Magazzino  <span class='CrescenteDescrizioneMagazzino'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteDescrizioneMagazzino'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
+            <th onclick='sorting(5);'>Magazzino  <span class='CrescenteMagazzino'> <i class='glyphicon glyphicon-arrow-up'> </i> </span>  <span class='DecrescenteMagazzino'> <i class='glyphicon glyphicon-arrow-down'> </i> </span> </th>
             </tr>
             </thead>";
 

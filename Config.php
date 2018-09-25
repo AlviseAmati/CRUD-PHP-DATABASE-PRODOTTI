@@ -1,6 +1,5 @@
 <?php
     try{
-    $hostname="localhost";
     $hostname="192.168.245.11";
     $user="root";
     $pass="";

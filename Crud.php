@@ -94,8 +94,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             </div>
         </div>
     </div>
+    </div>
     <div class="container">
-        <span class="glyphicon glyphicon-info-sign" onmouseover="info();" onmouseout="resetInfo();" id="information"></span>
         <br>
         <p class="alert alert-info" id="info" hidden></p>
         <table class="table table-hover" id="id_table">

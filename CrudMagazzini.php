@@ -33,15 +33,23 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
+<<<<<<< HEAD
                 <div class="form-group has-feedback">
                     <input type="search" id="research"  onkeyup='Ricerca("Magazzini");' name="q" placeholder="Cerca">
                     <button id="research"  onclick='RicercaFiltro("Magazzini");' >Search</button>
                 </div>
+=======
+            <form action="Admin.php">       
+                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'> 
+                    <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
+                    <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>     
+                    </form> 
+>>>>>>> ba0c8956419a69de0392488edba93d5fbd9c4091
             </ul>
             </div>
         </div>
     </nav>
-    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>    <div class="container" style="align-right" id="mostra">                      
+    <div class="container" style="align-right" id="mostra">
     <?php if($ruolo == 'Amministratore'){?>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungiMagazzino('Magazzini');"><span class="glyphicon glyphicon-plus"></span></button>
         <button type='submit' class='btn btn-danger' id="Cancella" disabled="true" name='btnDelete' onclick='cancella("Magazzini");'><span class='glyphicon glyphicon-minus'></span></button>
@@ -76,8 +84,8 @@ if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
             </div>
         </div>
     </div>
+    </div>
     <div class="container">
-        <span class="glyphicon glyphicon-info-sign" onmouseover="info();" onmouseout="resetInfo();" id="information"></span>
         <br>
         <p class="alert alert-info" id="info" hidden></p>
         <table class="table table-hover" id="id_table">
