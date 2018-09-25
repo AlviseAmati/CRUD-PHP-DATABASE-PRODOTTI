@@ -64,12 +64,13 @@ function selection(tabella){
     $("#id_table").load("Select.php?tabella=" + tabella);
     $("#id_table").hide();
     $("#id_table").fadeIn(1000);
+    $("#Cancella").prop("disabled", true);
+    $("#Modifica").prop("disabled", true);
 }
 
 function selectLog(page){
     $("#tabella").load(page);
 }
-
 
 function Abilita()
 {
@@ -114,25 +115,27 @@ else $("#prova").text("Inserisci i dati correttamente");
 
 function cancella(tabella){
     Id=$("input[name='seleziona']:checked").val();
-    if(tabella == 'Prodotti')
+    var domanda = confirm("Sei sicuro di voler eliminare il record?");
+    if(domanda == true)
     {
-        $("#prova").load("Delete.php?Id=" + Id + "&tabella=" + tabella, function () {
-            $("#id_table").load("Select.php?tabella=" + tabella);
-        });
-    }
+        if(tabella == 'Prodotti')
+        {
+            $("#prova").load("Delete.php?Id=" + Id + "&tabella=" + tabella, function () {
+                selection(tabella);
+            });
+        }
 
-    if(tabella == 'Magazzini')
-    {
-        $("#prova").load("Delete.php?Id=" + Id + "&tabella=magazzino", function () {
-            $("#id_table").load("Select.php?tabella=Magazzini");
-        });
-    }
+        if(tabella == 'Magazzini')
+        {
+            $("#prova").load("Delete.php?Id=" + Id + "&tabella=magazzino", function () {
+                selection(tabella);            });
+        }
 
-    if(tabella == 'Utenti')
-    {
-        $("#prova").load("Delete.php?Id=" + Id + "&tabella=" + tabella, function () {
-            $("#id_table").load("Select.php?tabella=" + tabella);
-        });
+        if(tabella == 'Utenti')
+        {
+            $("#prova").load("Delete.php?Id=" + Id + "&tabella=" + tabella, function () {
+                selection(tabella);            });
+        }
     }
 }
 
