@@ -1,9 +1,15 @@
 <?php 
 session_start();
+<<<<<<< HEAD
 if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
 {
     if(!isSet($_GET['page'])) $page=1;
     else $page=$_GET['page']; ?>
+=======
+if(isset($_SESSION['IdUtente']) && isset($_SESSION['Password']))
+{
+     ?>
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,25 +33,37 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
+<<<<<<< HEAD
                 <div class="form-group has-feedback">
                     <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'>                   
                     <button id='btnCerca' class='form-control' onclick="Filter();"> <i class="glyphicon glyphicon-search form-control-feedback"></i> </button>
                     
+=======
+                <div class="form-group has-feedback">                  
+                    <form action="Admin.php">       
+                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'> 
+                    <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
+                    <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut();'><span class='glyphicon glyphicon-log-out'></span></button>     
+                    </form>              
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
                 </div>
             </ul>
             </div>
         </div>
     </nav>
-    <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>    <div class="container" style="align-right" id="mostra">                      
     <div class="container">
-        <span class="glyphicon glyphicon-info-sign" onmouseover="info();" onmouseout="resetInfo();" id="information"></span>
         <br>
         <p class="alert alert-info" id="info" hidden></p>
         <div id="tabella">
         </div>
     </div>
+<<<<<<< HEAD
     <p id="prova" class="hidden"></p>
 </form>
+=======
+    <p id="prova" class="hidden">
+    </p>
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69
 </body>
 </html>
 <?php 

@@ -24,4 +24,25 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
         $db->rollBack();
     echo $e->getMessage();  
     }
+<<<<<<< HEAD
 }
+=======
+
+    $DataOra = date ("d/m/Y G:i");
+    $sql = "INSERT INTO logoperazioni (IdNome, DataOra, DescrizioneOperazione) VALUES(:nomeutente,:dataora,:descrizioneoperazione)";
+    $stmt = $db->prepare($sql);
+    $DescrizioneOperazione="Record $IdProdotti eliminato dalla tabella $tabella";
+    $stmt->bindParam(':nomeutente', $NomeUtente, PDO::PARAM_STR);
+    $stmt->bindParam(':dataora', $DataOra, PDO::PARAM_STR);
+    $stmt->bindParam(':descrizioneoperazione', $DescrizioneOperazione, PDO::PARAM_STR);
+    $stmt->execute();
+}
+else
+{
+    echo "<script language='JavaScript'>\n"; 
+    echo "alert('Accesso negato: torna indietro');\n"; 
+    echo "</script>"; 
+    header('location:Login.php');
+}
+?>
+>>>>>>> bf48da55f6f06802e9f4d1bf5f25f87506adde69

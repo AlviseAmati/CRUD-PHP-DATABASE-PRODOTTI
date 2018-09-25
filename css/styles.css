@@ -1,16 +1,20 @@
 .btn{
     border-radius: 5px;
-    border: none;
+    border: nome;
     color: white;
     padding: 18px 20px;
     font-size: 16px;
 }
-#button{
-    text-align:right;
+#miopulsante{
+    position: absolute;
+    left: 335px;
 }
-.success {background-color: #4CAF50;}
+#container1{
+    width:300px;
+    margin: auto;
+    border: 3px solid red;
+}
+.success{background-color: #4CAF50;}
 .success:hover {background-color: #46a049;}
-
 .page-header{height: 50px;}
-
-.col {color: red;}
+.col{color: red;}

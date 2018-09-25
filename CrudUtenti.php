@@ -31,27 +31,33 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
             </div>
             <div class="container">
             <ul class="nav navbar-form navbar-right">
-                <div class="form-group has-feedback">
-                    <input type='text' id='research' class='form-control' onkeyup='Ricerca();' placeholder='Cerca...'>
-                    <i class="glyphicon glyphicon-search form-control-feedback"></i>
-                </div>
+            <div class="form-group has-feedback">
+                    <div class="search-control">
+                    <input type="search" id="research"  onkeyup='Ricerca("Utenti");' name="q" placeholder="Cerca">
+                    <button id="research"  onclick='RicercaFiltro("Utenti");' >Search</button>
+            </div>
+            <form action="Admin.php">       
+        
+                    <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button> 
+                    <button style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut();'><span class='glyphicon glyphicon-log-out'></span></button>     
+                    </form> 
             </ul>
             </div>
         </div>
     </nav>
+    <div class="container" style="align-right" id="mostra">
     <div style = "    display: -webkit-flex;
     -webkit-flex-direction: row;
     display: flex;
     flex-direction: row; "> 
-    <button type='submit' style="margin: 5px" class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>                         
-    <?php if($ruolo == 'Amministratore'){?> 
-        <form action="Admin.php"> 
-        <button type='submit' style="margin: 5px"  class='btn btn-primary'><span class='glyphicon glyphicon-arrow-left'></span></button>               
+    
+     <?php if($ruolo == 'Amministratore'){?> 
+        <form action="Admin.php">              
         </form> 
         </div> <br>
         <button type="submit" class="btn success" data-toggle="modal" data-target="#myModal" onclick="formAggiungiUtente('Utenti');"><span class="glyphicon glyphicon-plus"></span></button>
-        <button type='submit' class='btn btn-danger' name='btnDelete' onclick='cancella("Utenti");'><span class='glyphicon glyphicon-minus'></span></button>
-        <button type='submit' class='btn btn-primary' name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdUtente, 'Utenti');"><span class='glyphicon glyphicon-pencil'></span></button>
+        <button type='submit' class='btn btn-danger' id="Cancella" disabled="true" name='btnDelete' onclick='cancella("Utenti");'><span class='glyphicon glyphicon-minus'></span></button>
+        <button type='submit' class='btn btn-primary' id="Modifica" disabled="true" name='btnUpdate' data-toggle='modal' data-target='#myModal' onclick="formAggiorna(IdUtente, 'Utenti');"><span class='glyphicon glyphicon-pencil'></span></button>
     <?php } ?>
         <!-- form modale per Aggiungi-->
         <div class="modal fade" id="myModal" role="dialog">
@@ -63,49 +69,52 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']))
                         <p id="titolo"></p>
                     </div>
                     <div class="modal-body">
+                    <form>
                         <input type="hidden" class="form-control"  name="IdUtente" id="IdUtente" required>
                         <br>
                         <label for="NomeUtente">Nome Utente:</label>
                         <input type="text" class="form-control" name="NomeUtente" id="NomeUtente" placeholder="Nome Utente" required>
                         <br>
                         <label for="Password">Password:</label>
-                        <input type="text" class="form-control" name="Passwords" id="Passwords" placeholder="Passwords" required>     
+                        <input type="password" class="form-control" name="Passwords" id="Passwords" placeholder="Passwords" required>     
                         <label for="Nome">Nome:</label>
                         <input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome" required>   
                         <label for="Cognome">Cognome:</label>
                         <input type="text" class="form-control" name="Cognome" id="Cognome" placeholder="Cognome" required>   
-                        <label for="Mail">Mail:</label>
-                        <input type="text" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
+                        <label for="Mail">Email:</label>
+                        <input type="Email" class="form-control" name="Mail" id="Mail" placeholder="Mail" required>   
                         <label for="DataNascita">Data Nascita:</label>
-                        <input type="text" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>   
-                        <label for="Eta">Eta:</label>
-                        <input type="text" class="form-control" name="Eta" id="Eta" placeholder="Eta" required>          
+                        <input type="date" min="01/01/1900" max="01/01/2018" class="form-control" name="DataNascita" id="DataNascita" placeholder="Data Nascita" required>           
                         <label for="Indirizzo">Indirizzo:</label>
                         <input type="text" class="form-control" name="Indirizzo" id="Indirizzo" placeholder="Indirizzo" required>             
                         <label for="CodiceFiscale">Codice Fiscale:</label>
-                        <input type="text" class="form-control" name="CodiceFiscale" id="CodiceFiscale" placeholder="Codice Fiscale" required>             
+                        <input type="text" class="form-control" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+                                 name="CodiceFiscale" id="CodiceFiscale" placeholder="Codice Fiscale" required>             
                         <label for="IdRuoli">Ruoli:</label>
-                        <select class="form-control" id = 'IdRuoli'> <option value='1'> Ospite </option> <option value='2'> Amministratore </option> </select>                               
+                        <select class="form-control" id = 'IdRuoli'> <option value='1'> Ospite </option> <option value='2'> Amministratore </option> </select> 
+                        <label for="Abilitazione">Abilitazione:</label>
+                        <select class="form-control" id = 'Abilitazione'> <option value='0'> Disabilitato </option> <option value='1'> Abilitato </option> </select>                              
+                    </form>
                     </div>
                     <div class="modal-footer">
                         <br>
                         <br>
-                        <button type="button" class="btn btn-success" id="insert" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Inserisci</button>
+                        <button type="submit" class="btn btn-success" id="insert" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Inserisci</button>
                         <button type="button" class="btn btn-danger" id="annulla" onclick="annulla();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Annulla </button>
                         <p class="alert alert-danger" id="error" hidden></p>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
     <div class="container">
-        <span class="glyphicon glyphicon-info-sign" onmouseover="info();" onmouseout="resetInfo();" id="information"></span>
         <br>
         <p class="alert alert-info" id="info" hidden></p>
         <table class="table table-hover" id="id_table">
         </table>
     </div>
-    <p id="prova" class="hidden"></p>
+    <h2 align="center" style="color:red"><p id="prova" ></p>
 </body>
 </html>
 <?php }
