@@ -49,7 +49,7 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo']) && $_SESSION['Ruo
 
         for($i=1; $i<=$tot_pagine; $i++)
         {
-            echo'<li><a href="Log.php?page='.$i.'">'.$i.'</a></li>';
+            echo'<li><a href="Log.php?'.$_GET['tabella'].'&page='.$i.'">'.$i.'</a></li>';
         }
 
         echo"</ul></nav>";

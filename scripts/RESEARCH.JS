@@ -16,12 +16,6 @@ function Ricerca(tabella)
         $("#id_table").load("Select.php?tabella=" + tabella);
 }
 
-function RicercaFiltro(tabella)
-{
-    var stringa = document.getElementById("research").value.toUpperCase();
-    $("#id_table").load("Select.php?tabella=" + tabella + "&Ricerca=" + 1 + "&Valore=" + stringa);
-}
-
 function Reset() {
     //imposta tutte le celle al colore bianco
     var table = document.getElementById("id_table");
@@ -31,9 +25,9 @@ function Reset() {
     }
 }
 
-function Filter(){
+function Filter(tabella){
     var stringa = document.getElementById("research").value;
     if(stringa!="" && stringa!=".") {
-        $("#id_table").load("Filter.php?stringa=" + stringa);
+        $("#id_table").load("Filter.php?tabella=stringa=" + stringa);
     }
 }

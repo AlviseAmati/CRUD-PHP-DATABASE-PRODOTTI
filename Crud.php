@@ -27,7 +27,7 @@ if(isset($_SESSION['NomeUtente']) && isset($_SESSION['Ruolo'])){
             <ul class="nav navbar-form navbar-right">
                 <div class="form-group has-feedback">
                     <div class="search-control">
-                    <input type="search" id="research"  onkeyup='Ricerca("Prodotti");' name="q" placeholder="Cerca">
+                    <input type="search" id="research"  onkeyup='Ricerca("Prodotti");' name="research" placeholder="Cerca">
                     <button id="research"  class='btn btn-primary'  onclick='RicercaFiltro("Prodotti");' ><span class='glyphicon glyphicon-search'></span></button>
                     <button type='submit' style="margin: 5px"  class='btn btn-primary' onclick="window.location.href='Admin.php';"><span class='glyphicon glyphicon-arrow-left'></span></button> 
                     <button type='submit' class='btn btn-primary' name='LogOut' data-toggle='modal'  onclick='LogOut()'><span class='glyphicon glyphicon-log-out'></span></button>
